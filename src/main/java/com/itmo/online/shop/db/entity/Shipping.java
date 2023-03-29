@@ -1,5 +1,7 @@
-package com.itmo.online.shop.db.domain;
+package com.itmo.online.shop.db.entity;
 
+import com.itmo.online.shop.db.entity.Address;
+import com.itmo.online.shop.db.entity.Order;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;

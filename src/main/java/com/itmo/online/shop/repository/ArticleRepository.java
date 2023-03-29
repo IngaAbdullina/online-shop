@@ -1,6 +1,6 @@
 package com.itmo.online.shop.repository;
 
-import com.itmo.online.shop.db.domain.Article;
+import com.itmo.online.shop.db.entity.Article;
 import java.util.List;
 import java.util.Optional;
 import org.springframework.data.jpa.repository.EntityGraph;

@@ -1,8 +1,8 @@
-package com.itmo.online.shop.db.domain;
+package com.itmo.online.shop.db.entity;
 
+import com.itmo.online.shop.db.entity.Article;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -19,53 +19,53 @@ import lombok.Setter;
 @Getter
 @Setter
 @Entity
-@Table(name = "size")
-public class Size implements Comparable<Size> {
-	
+@Table(name = "category")
+public class Category {
+
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name = "id")
 	private Long id;
 
-	@Column(name = "value")
-	private String value;
+	@Column(name = "name")
+	private String name;
 
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne
 	@JoinColumn(name="article_id")
 //	@Column(name = "article_id")	// todo do we need this?
-	private Article article;	
+	private Article article;
 
-//	public Size() {}
+//	public Category() {
+//	}
 	
-	public Size(String value, Article article) {
-		this.value = value;
+	public Category(String name, Article article) {
+		this.name = name;
 		this.article = article;
 	}
-		
+
 //	public Long getId() {
 //		return id;
 //	}
+//
 //	public void setId(Long id) {
 //		this.id = id;
 //	}
-//	public String getValue() {
-//		return value;
-//	}
-//	public void setValue(String value) {
-//		this.value = value;
-//	}
+//
 //	public Article getArticle() {
 //		return article;
 //	}
+//
 //	public void setArticle(Article article) {
 //		this.article = article;
 //	}
-
-	@Override
-	public int compareTo(Size s) {
-		return this.value.compareTo(s.getValue());		
-	}
-	
+//
+//	public String getName() {
+//		return name;
+//	}
+//
+//	public void setName(String name) {
+//		this.name = name;
+//	}
 	
 	
 }

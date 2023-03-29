@@ -1,7 +1,7 @@
 package com.itmo.online.shop.repository;
 
-import com.itmo.online.shop.db.domain.CartItem;
-import com.itmo.online.shop.db.domain.User;
+import com.itmo.online.shop.db.entity.CartItem;
+import com.itmo.online.shop.db.entity.User;
 import java.util.List;
 import org.springframework.data.jpa.repository.EntityGraph;
 import org.springframework.data.jpa.repository.JpaRepository;

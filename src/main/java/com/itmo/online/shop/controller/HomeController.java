@@ -1,6 +1,6 @@
 package com.itmo.online.shop.controller;
 
-import com.itmo.online.shop.db.domain.Article;
+import com.itmo.online.shop.db.entity.Article;
 import com.itmo.online.shop.service.ArticleService;
 import java.util.List;
 import org.springframework.stereotype.Controller;

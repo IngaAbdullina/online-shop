@@ -1,9 +1,9 @@
 package com.itmo.online.shop.controller;
 
-import com.itmo.online.shop.db.domain.Article;
-import com.itmo.online.shop.db.domain.CartItem;
-import com.itmo.online.shop.db.domain.ShoppingCart;
-import com.itmo.online.shop.db.domain.User;
+import com.itmo.online.shop.db.entity.Article;
+import com.itmo.online.shop.db.entity.CartItem;
+import com.itmo.online.shop.db.ShoppingCart;
+import com.itmo.online.shop.db.entity.User;
 import com.itmo.online.shop.service.ArticleService;
 import com.itmo.online.shop.service.ShoppingCartService;
 import org.springframework.security.core.Authentication;

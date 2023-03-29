@@ -1,5 +1,9 @@
-package com.itmo.online.shop.db.domain;
+package com.itmo.online.shop.db;
 
+import com.itmo.online.shop.db.entity.Brand;
+import com.itmo.online.shop.db.entity.Category;
+import com.itmo.online.shop.db.entity.Size;
+import com.itmo.online.shop.db.entity.Article;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;

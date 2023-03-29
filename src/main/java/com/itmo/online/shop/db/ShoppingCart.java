@@ -1,5 +1,6 @@
-package com.itmo.online.shop.db.domain;
+package com.itmo.online.shop.db;
 
+import com.itmo.online.shop.db.entity.CartItem;
 import java.math.BigDecimal;
 import java.util.List;
 

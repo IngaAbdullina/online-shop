@@ -1,11 +1,11 @@
 package com.itmo.online.shop.controller;
 
-import com.itmo.online.shop.db.domain.Address;
-import com.itmo.online.shop.db.domain.Order;
-import com.itmo.online.shop.db.domain.Payment;
-import com.itmo.online.shop.db.domain.Shipping;
-import com.itmo.online.shop.db.domain.ShoppingCart;
-import com.itmo.online.shop.db.domain.User;
+import com.itmo.online.shop.db.entity.Address;
+import com.itmo.online.shop.db.entity.Order;
+import com.itmo.online.shop.db.entity.Payment;
+import com.itmo.online.shop.db.entity.Shipping;
+import com.itmo.online.shop.db.ShoppingCart;
+import com.itmo.online.shop.db.entity.User;
 import com.itmo.online.shop.service.OrderService;
 import com.itmo.online.shop.service.ShoppingCartService;
 import org.springframework.security.core.Authentication;

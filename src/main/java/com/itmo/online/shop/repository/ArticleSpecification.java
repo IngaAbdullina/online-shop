@@ -1,9 +1,9 @@
 package com.itmo.online.shop.repository;
 
-import com.itmo.online.shop.db.domain.Article;
-import com.itmo.online.shop.db.domain.Brand;
-import com.itmo.online.shop.db.domain.Category;
-import com.itmo.online.shop.db.domain.Size;
+import com.itmo.online.shop.db.entity.Article;
+import com.itmo.online.shop.db.entity.Brand;
+import com.itmo.online.shop.db.entity.Category;
+import com.itmo.online.shop.db.entity.Size;
 import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.criteria.CriteriaBuilder;

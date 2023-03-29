@@ -1,4 +1,4 @@
-package com.itmo.online.shop.db.domain;
+package com.itmo.online.shop.db.entity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;

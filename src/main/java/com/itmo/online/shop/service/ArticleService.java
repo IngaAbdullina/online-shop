@@ -1,6 +1,6 @@
 package com.itmo.online.shop.service;
 
-import com.itmo.online.shop.db.domain.Article;
+import com.itmo.online.shop.db.entity.Article;
 import java.util.List;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;

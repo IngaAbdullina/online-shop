@@ -1,6 +1,6 @@
 package com.itmo.online.shop.service.impl;
 
-import com.itmo.online.shop.db.domain.Article;
+import com.itmo.online.shop.db.entity.Article;
 import com.itmo.online.shop.repository.ArticleRepository;
 import com.itmo.online.shop.repository.ArticleSpecification;
 import com.itmo.online.shop.service.ArticleService;

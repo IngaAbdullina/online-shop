@@ -1,8 +1,7 @@
 package com.itmo.online.shop.config;
 
-import com.itmo.online.shop.service.impl.UserSecurityService;
+import com.itmo.online.shop.security.UserSecurityService;
 import com.itmo.online.shop.util.SecurityUtility;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;

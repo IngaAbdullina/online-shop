@@ -1,5 +1,6 @@
-package com.itmo.online.shop.db.domain;
+package com.itmo.online.shop.db.entity;
 
+import com.itmo.online.shop.db.entity.Article;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;

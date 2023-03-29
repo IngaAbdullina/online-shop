@@ -1,12 +1,12 @@
 package com.itmo.online.shop.service.impl;
 
-import com.itmo.online.shop.db.domain.Article;
-import com.itmo.online.shop.db.domain.CartItem;
-import com.itmo.online.shop.db.domain.Order;
-import com.itmo.online.shop.db.domain.Payment;
-import com.itmo.online.shop.db.domain.Shipping;
-import com.itmo.online.shop.db.domain.ShoppingCart;
-import com.itmo.online.shop.db.domain.User;
+import com.itmo.online.shop.db.entity.Article;
+import com.itmo.online.shop.db.entity.CartItem;
+import com.itmo.online.shop.db.entity.Order;
+import com.itmo.online.shop.db.entity.Payment;
+import com.itmo.online.shop.db.entity.Shipping;
+import com.itmo.online.shop.db.ShoppingCart;
+import com.itmo.online.shop.db.entity.User;
 import com.itmo.online.shop.repository.ArticleRepository;
 import com.itmo.online.shop.repository.CartItemRepository;
 import com.itmo.online.shop.repository.OrderRepository;

@@ -1,4 +1,4 @@
-package com.itmo.online.shop.db.domain;
+package com.itmo.online.shop.db.entity;
 
 import java.util.Set;
 import javax.persistence.CascadeType;

@@ -1,6 +1,6 @@
 package com.itmo.online.shop.controller;
 
-import com.itmo.online.shop.db.domain.User;
+import com.itmo.online.shop.db.entity.User;
 import com.itmo.online.shop.service.ShoppingCartService;
 import java.util.Date;
 import javax.servlet.http.HttpServletRequest;

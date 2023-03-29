@@ -1,10 +1,10 @@
 package com.itmo.online.shop.controller;
 
-import com.itmo.online.shop.db.domain.Article;
-import com.itmo.online.shop.db.domain.ArticleBuilder;
-import com.itmo.online.shop.db.domain.Brand;
-import com.itmo.online.shop.db.domain.Category;
-import com.itmo.online.shop.db.domain.Size;
+import com.itmo.online.shop.db.entity.Article;
+import com.itmo.online.shop.db.ArticleBuilder;
+import com.itmo.online.shop.db.entity.Brand;
+import com.itmo.online.shop.db.entity.Category;
+import com.itmo.online.shop.db.entity.Size;
 import com.itmo.online.shop.service.ArticleService;
 import java.util.Arrays;
 import java.util.List;
