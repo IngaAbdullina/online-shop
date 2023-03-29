@@ -22,53 +22,55 @@ import org.springframework.transaction.annotation.Transactional;
 @Service
 public class OrderServiceImpl implements OrderService {
 
-	private final	OrderRepository orderRepository;
-	private final	CartItemRepository cartItemRepository;
-	private final	ArticleRepository articleRepository;
+  private final OrderRepository orderRepository;
+  private final CartItemRepository cartItemRepository;
+  private final ArticleRepository articleRepository;
 
-	public OrderServiceImpl(OrderRepository orderRepository,
-			CartItemRepository cartItemRepository, ArticleRepository articleRepository) {
-		this.orderRepository = orderRepository;
-		this.cartItemRepository = cartItemRepository;
-		this.articleRepository = articleRepository;
-	}
+  public OrderServiceImpl(OrderRepository orderRepository,
+      CartItemRepository cartItemRepository, ArticleRepository articleRepository) {
+    this.orderRepository = orderRepository;
+    this.cartItemRepository = cartItemRepository;
+    this.articleRepository = articleRepository;
+  }
 
-	@Override
-	@Transactional
-	@CacheEvict(value = "itemcount", allEntries = true)
-	public synchronized Order createOrder(ShoppingCart shoppingCart, Shipping shipping, Payment payment, User user) {
-		Order order = new Order();
-		order.setUser(user);
-		order.setPayment(payment);
-		order.setShipping(shipping);
-		order.setOrderTotal(shoppingCart.getGrandTotal());
-		shipping.setOrder(order);
-		payment.setOrder(order);			
-		LocalDate today = LocalDate.now();
-		LocalDate estimatedDeliveryDate = today.plusDays(5);				
-		order.setOrderDate(Date.from(today.atStartOfDay(ZoneId.systemDefault()).toInstant()));
-		order.setShippingDate(Date.from(estimatedDeliveryDate.atStartOfDay(ZoneId.systemDefault()).toInstant()));
-		order.setOrderStatus("In Progress");
-		
-		order = orderRepository.save(order);
-		
-		List<CartItem> cartItems = shoppingCart.getCartItems();
-		for (CartItem item : cartItems) {
-			Article article = item.getArticle();
-			article.decreaseStock(item.getQty());
-			articleRepository.save(article);
-			item.setOrder(order);
-			cartItemRepository.save(item);
-		}		
-		return order;	
-	}
-	
-	@Override
-	public Order findOrderWithDetails(Long id) {
-		return orderRepository.findEagerById(id);
-	}	
+  @Override
+  @Transactional
+  @CacheEvict(value = "itemcount", allEntries = true)
+  public synchronized Order createOrder(ShoppingCart shoppingCart, Shipping shipping,
+      Payment payment, User user) {
+    Order order = new Order();
+    order.setUser(user);
+    order.setPayment(payment);
+    order.setShipping(shipping);
+    order.setOrderTotal(shoppingCart.getGrandTotal());
+    shipping.setOrder(order);
+    payment.setOrder(order);
+    LocalDate today = LocalDate.now();
+    LocalDate estimatedDeliveryDate = today.plusDays(5);
+    order.setOrderDate(Date.from(today.atStartOfDay(ZoneId.systemDefault()).toInstant()));
+    order.setShippingDate(
+        Date.from(estimatedDeliveryDate.atStartOfDay(ZoneId.systemDefault()).toInstant()));
+    order.setOrderStatus("In Progress");
 
-	public List<Order> findByUser(User user) {
-		return orderRepository.findByUser(user);
-	}
+    order = orderRepository.save(order);
+
+    List<CartItem> cartItems = shoppingCart.getCartItems();
+    for (CartItem item : cartItems) {
+      Article article = item.getArticle();
+      article.decreaseStock(item.getQty());
+      articleRepository.save(article);
+      item.setOrder(order);
+      cartItemRepository.save(item);
+    }
+    return order;
+  }
+
+  @Override
+  public Order findOrderWithDetails(Long id) {
+    return orderRepository.findEagerById(id);
+  }
+
+  public List<Order> findByUser(User user) {
+    return orderRepository.findByUser(user);
+  }
 }

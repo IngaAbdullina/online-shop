@@ -10,16 +10,16 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 public class HomeController {
 
-	private final ArticleService articleService;
+  private final ArticleService articleService;
 
-	public HomeController(ArticleService articleService) {
-		this.articleService = articleService;
-	}
+  public HomeController(ArticleService articleService) {
+    this.articleService = articleService;
+  }
 
-	@RequestMapping("/")
-	public String index(Model model) {		
-		List<Article> articles = articleService.findFirstArticles();
-		model.addAttribute("articles", articles);
-		return "index";
-	}
+  @RequestMapping("/")
+  public String index(Model model) {
+    List<Article> articles = articleService.findFirstArticles();
+    model.addAttribute("articles", articles);
+    return "index";
+  }
 }

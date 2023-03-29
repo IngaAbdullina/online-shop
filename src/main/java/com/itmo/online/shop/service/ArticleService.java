@@ -7,22 +7,23 @@ import org.springframework.data.domain.Pageable;
 
 public interface ArticleService {
 
-	List<Article> findAllArticles();
-	
-	Page<Article> findArticlesByCriteria(Pageable pageable, Integer priceLow, Integer priceHigh, List<String> sizes,
-			List<String> categories, List<String> brands, String search);
-		
-	List<Article> findFirstArticles();
+  List<Article> findAllArticles();
 
-	Article findArticleById(Long id);
-	
-	Article saveArticle(Article article);
+  Page<Article> findArticlesByCriteria(Pageable pageable, Integer priceLow, Integer priceHigh,
+      List<String> sizes,
+      List<String> categories, List<String> brands, String search);
 
-	void deleteArticleById(Long id);
-	
-	List<String> getAllSizes();
+  List<Article> findFirstArticles();
 
-	List<String> getAllCategories();
+  Article findArticleById(Long id);
 
-	List<String> getAllBrands();
+  Article saveArticle(Article article);
+
+  void deleteArticleById(Long id);
+
+  List<String> getAllSizes();
+
+  List<String> getAllCategories();
+
+  List<String> getAllBrands();
 }

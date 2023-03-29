@@ -21,51 +21,27 @@ import lombok.Setter;
 @Entity
 @Table(name = "size")
 public class Size implements Comparable<Size> {
-	
-	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	@Column(name = "id")
-	private Long id;
 
-	@Column(name = "value")
-	private String value;
+  @Id
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  @Column(name = "id")
+  private Long id;
 
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name="article_id")
+  @Column(name = "value")
+  private String value;
+
+  @ManyToOne(fetch = FetchType.LAZY)
+  @JoinColumn(name = "article_id")
 //	@Column(name = "article_id")	// todo do we need this?
-	private Article article;
+  private Article article;
 
-//	public Size() {}
-	
-	public Size(String value, Article article) {
-		this.value = value;
-		this.article = article;
-	}
-		
-//	public Long getId() {
-//		return id;
-//	}
-//	public void setId(Long id) {
-//		this.id = id;
-//	}
-//	public String getValue() {
-//		return value;
-//	}
-//	public void setValue(String value) {
-//		this.value = value;
-//	}
-//	public Article getArticle() {
-//		return article;
-//	}
-//	public void setArticle(Article article) {
-//		this.article = article;
-//	}
+  public Size(String value, Article article) {
+    this.value = value;
+    this.article = article;
+  }
 
-	@Override
-	public int compareTo(Size s) {
-		return this.value.compareTo(s.getValue());		
-	}
-	
-	
-	
+  @Override
+  public int compareTo(Size s) {
+    return this.value.compareTo(s.getValue());
+  }
 }

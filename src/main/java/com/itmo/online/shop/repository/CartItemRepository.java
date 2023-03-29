@@ -8,10 +8,10 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface CartItemRepository extends JpaRepository<CartItem, Long> {
 
-	@EntityGraph(attributePaths = { "article" })
-	List<CartItem> findAllByUserAndOrderIsNull(User user);
-	
-	void deleteAllByUserAndOrderIsNull(User user);
+  @EntityGraph(attributePaths = {"article"})
+  List<CartItem> findAllByUserAndOrderIsNull(User user);
 
-	int countDistinctByUserAndOrderIsNull(User user);
+  void deleteAllByUserAndOrderIsNull(User user);
+
+  int countDistinctByUserAndOrderIsNull(User user);
 }

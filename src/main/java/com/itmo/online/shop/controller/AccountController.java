@@ -82,7 +82,8 @@ public class AccountController {
   // todo does user has password ? if yes delete password parameter
   @RequestMapping(value = "/new-user", method = RequestMethod.POST)
   public String newUserPost(@ModelAttribute("user") User user, BindingResult bindingResults,
-      @ModelAttribute("new-password") String password, RedirectAttributes redirectAttributes, Model model) {
+      @ModelAttribute("new-password") String password, RedirectAttributes redirectAttributes,
+      Model model) {
     model.addAttribute("email", user.getEmail());
     model.addAttribute("username", user.getUsername());
     boolean invalidFields = false;
@@ -105,7 +106,7 @@ public class AccountController {
     return "redirect:/my-profile";
   }
 
-	// todo разбить на два: обновить инфо и обновить пароль
+  // todo разбить на два: обновить инфо и обновить пароль
   @RequestMapping(value = "/update-user-info", method = RequestMethod.POST)
   public String updateUserInfo(@ModelAttribute("user") User user,
       @RequestParam("newPassword") String newPassword,

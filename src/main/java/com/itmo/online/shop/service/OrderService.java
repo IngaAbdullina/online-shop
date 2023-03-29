@@ -9,9 +9,9 @@ import java.util.List;
 
 public interface OrderService {
 
-	Order createOrder(ShoppingCart shoppingCart, Shipping shippingAddress, Payment payment, User user);
-	
-	List<Order> findByUser(User user);
-	
-	Order findOrderWithDetails(Long id);
+  Order createOrder(ShoppingCart shoppingCart, Shipping shippingAddress, Payment payment, User user);
+
+  List<Order> findByUser(User user);
+
+  Order findOrderWithDetails(Long id);
 }

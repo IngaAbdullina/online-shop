@@ -8,9 +8,8 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface OrderRepository extends JpaRepository<Order, Long> {
 
-	List<Order> findByUser(User user); 
-	
-	@EntityGraph(attributePaths = { "cartItems", "payment", "shipping" })
-	Order findEagerById(Long id);
+  List<Order> findByUser(User user);
 
+  @EntityGraph(attributePaths = {"cartItems", "payment", "shipping"})
+  Order findEagerById(Long id);
 }

@@ -27,42 +27,43 @@ import lombok.Setter;
 @Entity
 @Table(name = "users")
 public class User {
-	
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "id")
-	private Long id;
 
-	@NotBlank
-	@Column(name = "username", unique = true)
-	private String username;
+  @Id
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  @Column(name = "id")
+  private Long id;
 
-	@NotBlank
-	@Column(name = "password")
-	private String password;
+  @NotBlank
+  @Column(name = "username", unique = true)
+  private String username;
 
-	@NotBlank
-	@Email
-	@Column(name = "email", unique = true)
-	private String email;
+  @NotBlank
+  @Column(name = "password")
+  private String password;
 
-	@Column(name = "first_name")
-	private String firstName;
+  @NotBlank
+  @Email
+  @Column(name = "email", unique = true)
+  private String email;
 
-	@Column(name = "last_name")
-	private String lastName;
+  @Column(name = "first_name")
+  private String firstName;
 
-	@OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
-	@JoinColumn(name = "address_id")
+  @Column(name = "last_name")
+  private String lastName;
+
+  @OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
+  @JoinColumn(name = "address_id")
 //	@Column(name = "address_id")	// todo do we need this?
-	private Address address;
+  private Address address;
 
-	@Enumerated(EnumType.STRING)
-	@Column(name = "role")
-	private Role role;
+  @Enumerated(EnumType.STRING)
+  @Column(name = "role")
+  private Role role;
 
-	@Override
-	public String toString() {
-	  return getClass().getSimpleName() + "[id=" + id + "], " + "[username=" + username + "], " + "[password=" + password + "], " + "[email=" + email + "]";
-	}
+  @Override
+  public String toString() {
+    return getClass().getSimpleName() + "[id=" + id + "], " + "[username=" + username + "], "
+        + "[password=" + password + "], " + "[email=" + email + "]";
+  }
 }

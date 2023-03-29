@@ -22,7 +22,8 @@ public class PropertiesUtils {
       Properties prop = new Properties();
       prop.load(mainAppClass.getClassLoader().getResourceAsStream(propertiesFilename));
       return Optional.ofNullable(prop.getProperty(property));
-    } catch (Exception ignored) {}
+    } catch (Exception ignored) {
+    }
 
     return Optional.empty();
   }

@@ -16,67 +16,70 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 @Service
-@Transactional	// todo insert annotation just for methods
+@Transactional  // todo insert annotation just for methods
 public class ArticleServiceImpl implements ArticleService {
 
-	private final ArticleRepository articleRepository;
-	
-	@Value("${articleservice.featured-items-number}")
-	private int featuredArticlesNumber;
+  private final ArticleRepository articleRepository;
 
-	public ArticleServiceImpl(ArticleRepository articleRepository) {
-		this.articleRepository = articleRepository;
-	}
+  @Value("${articleservice.featured-items-number}")
+  private int featuredArticlesNumber;
 
-	@Override
-	public List<Article> findAllArticles() {
-		return articleRepository.findAllEagerBy();
-	}
-	
-	@Override
-	public Page<Article> findArticlesByCriteria(Pageable pageable, Integer priceLow, Integer priceHigh, 
-										List<String> sizes, List<String> categories, List<String> brands, String search) {		
-		return articleRepository.findAll(ArticleSpecification.filterBy(priceLow, priceHigh, sizes, categories, brands, search), pageable);
-	}	
-	
-	@Override
-	public List<Article> findFirstArticles() {
-		return articleRepository.findAll(PageRequest.of(0,featuredArticlesNumber)).getContent(); 
-	}
+  public ArticleServiceImpl(ArticleRepository articleRepository) {
+    this.articleRepository = articleRepository;
+  }
 
-	@Override
-	public Article findArticleById(Long id) {
-		Optional<Article> opt = articleRepository.findById(id);
-		return opt.get();	// todo
-	}
+  @Override
+  public List<Article> findAllArticles() {
+    return articleRepository.findAllEagerBy();
+  }
 
-	@Override
-	@CacheEvict(value = { "sizes", "categories", "brands" }, allEntries = true)
-	public Article saveArticle(Article article) {
-		return articleRepository.save(article);
-	}
-	
-	@Override
-	@CacheEvict(value = { "sizes", "categories", "brands" }, allEntries = true)
-	public void deleteArticleById(Long id) {
-		articleRepository.deleteById(id);		
-	}
+  @Override
+  public Page<Article> findArticlesByCriteria(Pageable pageable, Integer priceLow,
+      Integer priceHigh,
+      List<String> sizes, List<String> categories, List<String> brands, String search) {
+    return articleRepository.findAll(
+        ArticleSpecification.filterBy(priceLow, priceHigh, sizes, categories, brands, search),
+        pageable);
+  }
 
-	@Override
-	@Cacheable("sizes")
-	public List<String> getAllSizes() {
-		return articleRepository.findAllSizes();
-	}
+  @Override
+  public List<Article> findFirstArticles() {
+    return articleRepository.findAll(PageRequest.of(0, featuredArticlesNumber)).getContent();
+  }
 
-	@Override
-	@Cacheable("categories")
-	public List<String> getAllCategories() {
-		return articleRepository.findAllCategories();
-	}
+  @Override
+  public Article findArticleById(Long id) {
+    Optional<Article> opt = articleRepository.findById(id);
+    return opt.get();  // todo
+  }
 
-	@Override
-	@Cacheable("brands")
-	public List<String> getAllBrands() {
-		return articleRepository.findAllBrands();
-	}
+  @Override
+  @CacheEvict(value = {"sizes", "categories", "brands"}, allEntries = true)
+  public Article saveArticle(Article article) {
+    return articleRepository.save(article);
+  }
+
+  @Override
+  @CacheEvict(value = {"sizes", "categories", "brands"}, allEntries = true)
+  public void deleteArticleById(Long id) {
+    articleRepository.deleteById(id);
+  }
+
+  @Override
+  @Cacheable("sizes")
+  public List<String> getAllSizes() {
+    return articleRepository.findAllSizes();
+  }
+
+  @Override
+  @Cacheable("categories")
+  public List<String> getAllCategories() {
+    return articleRepository.findAllCategories();
+  }
+
+  @Override
+  @Cacheable("brands")
+  public List<String> getAllBrands() {
+    return articleRepository.findAllBrands();
+  }
 }

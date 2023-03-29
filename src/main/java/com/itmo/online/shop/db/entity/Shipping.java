@@ -1,7 +1,5 @@
 package com.itmo.online.shop.db.entity;
 
-import com.itmo.online.shop.db.entity.Address;
-import com.itmo.online.shop.db.entity.Order;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -40,37 +38,4 @@ public class Shipping {
 	@OneToOne
 //	@Column(name = "order_id")	// todo do we need this?
 	private Order order;
-
-//	public Long getId() {
-//		return id;
-//	}
-//
-//	public void setId(Long id) {
-//		this.id = id;
-//	}
-//
-//	public Address getAddress() {
-//		return address;
-//	}
-//
-//	public void setAddress(Address address) {
-//		this.address = address;
-//	}
-//
-//	public String getReceiver() {
-//		return receiver;
-//	}
-//
-//	public void setReceiver(String receiver) {
-//		this.receiver = receiver;
-//	}
-//
-//	public Order getOrder() {
-//		return order;
-//	}
-//
-//	public void setOrder(Order order) {
-//		this.order = order;
-//	}
-
 }
