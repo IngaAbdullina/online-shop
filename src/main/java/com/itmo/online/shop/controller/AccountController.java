@@ -3,6 +3,7 @@ package com.itmo.online.shop.controller;
 import com.itmo.online.shop.db.entity.Address;
 import com.itmo.online.shop.db.entity.Order;
 import com.itmo.online.shop.db.entity.User;
+import com.itmo.online.shop.service.AddressService;
 import com.itmo.online.shop.service.OrderService;
 import com.itmo.online.shop.service.UserService;
 import com.itmo.online.shop.security.UserSecurityService;
@@ -29,12 +30,14 @@ public class AccountController {
   private final UserService userService;
   private final UserSecurityService userSecurityService;
   private final OrderService orderService;
+  private final AddressService addressService;
 
   public AccountController(UserService userService, UserSecurityService userSecurityService,
-      OrderService orderService) {
+      OrderService orderService, AddressService addressService) {
     this.userService = userService;
     this.userSecurityService = userSecurityService;
     this.orderService = orderService;
+    this.addressService = addressService;
   }
 
   @RequestMapping("/login")
@@ -74,6 +77,7 @@ public class AccountController {
     if (currentUser == null) {
       throw new Exception("User not found");
     }
+    address = addressService.save(address);
     currentUser.setAddress(address);
     userService.save(currentUser);
     return "redirect:/my-address";

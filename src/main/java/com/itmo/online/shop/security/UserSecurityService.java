@@ -25,7 +25,7 @@ public class UserSecurityService implements UserDetailsService {
     if (user == null) {
       throw new UsernameNotFoundException("Username not found");
     }
-    return new UserSecurityDetails(user);
+    return user;
   }
 
   public void authenticateUser(String username) {

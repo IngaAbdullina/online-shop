@@ -24,11 +24,11 @@ public class Address {
   @Column(name = "id")
   private Long id;
 
-  @Column(name = "city")
-  private String city;
-
   @Column(name = "country")
   private String country;
+
+  @Column(name = "city")
+  private String city;
 
   @Column(name = "street_address")
   private String streetAddress;
