@@ -56,7 +56,7 @@ public class OrderServiceImpl implements OrderService {
     List<CartItem> cartItems = shoppingCart.getCartItems();
     for (CartItem item : cartItems) {
       Article article = item.getArticle();
-      article.decreaseStock(item.getQty());
+      article.decreaseStock(item.getQuantity());
       articleRepository.save(article);
       item.setOrder(order);
       cartItemRepository.save(item);

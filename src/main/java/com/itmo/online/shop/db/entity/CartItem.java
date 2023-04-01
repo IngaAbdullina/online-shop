@@ -30,7 +30,7 @@ public class CartItem {
   private Long id;
 
   @Column(name = "quantity")
-  private int qty;  // todo Quantity
+  private int quantity;
 
   @Column(name = "size")
   private String size;
@@ -52,12 +52,12 @@ public class CartItem {
   }
 
   public BigDecimal getSubtotal() {
-    return BigDecimal.valueOf(article.getPrice()).multiply(new BigDecimal(qty));
+    return BigDecimal.valueOf(article.getPrice()).multiply(new BigDecimal(quantity));
   }
 
   public void addQuantity(int quantity) {
     if (quantity > 0) {
-      this.qty = this.qty + quantity;
+      this.quantity = this.quantity + quantity;
     }
   }
 

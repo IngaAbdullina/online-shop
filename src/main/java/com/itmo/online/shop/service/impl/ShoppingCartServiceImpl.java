@@ -48,7 +48,7 @@ public class ShoppingCartServiceImpl implements ShoppingCartService {
       cartItem = new CartItem();
       cartItem.setUser(user);
       cartItem.setArticle(article);
-      cartItem.setQty(qty);
+      cartItem.setQuantity(qty);
     }
     cartItem.setSize(size);
     cartItem = cartItemRepository.save(cartItem);
@@ -69,7 +69,7 @@ public class ShoppingCartServiceImpl implements ShoppingCartService {
     if (qty == null || qty <= 0) {
       this.removeCartItem(cartItem);
     } else if (cartItem.getArticle().hasStock(qty)) {
-      cartItem.setQty(qty);
+      cartItem.setQuantity(qty);
       cartItemRepository.save(cartItem);
     }
   }
