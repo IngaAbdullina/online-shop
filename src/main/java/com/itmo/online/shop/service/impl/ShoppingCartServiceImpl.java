@@ -44,16 +44,14 @@ public class ShoppingCartServiceImpl implements ShoppingCartService {
     CartItem cartItem = shoppingCart.findCartItemByArticleAndSize(article.getId(), size);
     if (cartItem != null && cartItem.hasSameSizeThan(size)) {
       cartItem.addQuantity(qty);
-      cartItem.setSize(size);
-      cartItem = cartItemRepository.save(cartItem);
     } else {
       cartItem = new CartItem();
       cartItem.setUser(user);
       cartItem.setArticle(article);
       cartItem.setQty(qty);
-      cartItem.setSize(size);
-      cartItem = cartItemRepository.save(cartItem);
     }
+    cartItem.setSize(size);
+    cartItem = cartItemRepository.save(cartItem);
     return cartItem;
   }
 

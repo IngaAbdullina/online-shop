@@ -29,8 +29,8 @@ public class CartItem {
   @Column(name = "id")
   private Long id;
 
-  @Column(name = "qty")
-  private int qty;
+  @Column(name = "quantity")
+  private int qty;  // todo Quantity
 
   @Column(name = "size")
   private String size;
@@ -47,17 +47,17 @@ public class CartItem {
   @JoinColumn(name = "user_id")
   private User user;
 
-  public boolean canUpdateQty(Integer qty) {
-    return qty == null || qty <= 0 || this.getArticle().hasStock(qty);
+  public boolean canUpdateQuantity(Integer quantity) {
+    return quantity == null || quantity <= 0 || this.getArticle().hasStock(quantity);
   }
 
   public BigDecimal getSubtotal() {
     return BigDecimal.valueOf(article.getPrice()).multiply(new BigDecimal(qty));
   }
 
-  public void addQuantity(int qty) {
-    if (qty > 0) {
-      this.qty = this.qty + qty;
+  public void addQuantity(int quantity) {
+    if (quantity > 0) {
+      this.qty = this.qty + quantity;
     }
   }
 
