@@ -17,7 +17,7 @@ public class AddressServiceImpl implements AddressService {
 
   @Override
   public Address findById(Long id) {
-    return addressRepository.findById(id).get();    // todo
+    return addressRepository.getReferenceById(id);
   }
 
   @Override

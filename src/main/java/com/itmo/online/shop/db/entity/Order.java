@@ -45,15 +45,12 @@ public class Order {
   private Date shippingDate;
 
   @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-//	@Column(name = "payment_id")	// todo do we need this?
   private Payment payment;
 
   @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-//	@Column(name = "shipping_id")	// todo do we need this?
   private Shipping shipping;
 
   @ManyToOne(fetch = FetchType.LAZY)
-//	@Column(name = "user_id")	// todo do we need this?
   private User user;
 
   @OneToMany(mappedBy = "order", cascade = CascadeType.ALL, fetch = FetchType.LAZY)

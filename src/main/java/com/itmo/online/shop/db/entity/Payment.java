@@ -47,6 +47,5 @@ public class Payment {
   private String type;
 
   @OneToOne
-//	@Column(name = "order_id")	// todo do we need this?
   private Order order;
 }

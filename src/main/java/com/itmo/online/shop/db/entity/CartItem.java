@@ -37,17 +37,14 @@ public class CartItem {
 
   @OneToOne
   @JoinColumn(name = "article_id")
-//	@Column(name = "article_id")	// todo do we need this?
   private Article article;
 
   @ManyToOne
   @JoinColumn(name = "order_id")
-//	@Column(name = "order_id")	// todo do we need this?
   private Order order;
 
   @ManyToOne(fetch = FetchType.LAZY)
   @JoinColumn(name = "user_id")
-//	@Column(name = "user_id")	// todo do we need this?
   private User user;
 
   public boolean canUpdateQty(Integer qty) {
@@ -55,7 +52,7 @@ public class CartItem {
   }
 
   public BigDecimal getSubtotal() {
-    return new BigDecimal(article.getPrice()).multiply(new BigDecimal(qty));
+    return BigDecimal.valueOf(article.getPrice()).multiply(new BigDecimal(qty));
   }
 
   public void addQuantity(int qty) {

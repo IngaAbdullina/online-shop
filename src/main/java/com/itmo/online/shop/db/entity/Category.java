@@ -31,7 +31,6 @@ public class Category {
 
   @ManyToOne
   @JoinColumn(name = "article_id")
-//	@Column(name = "article_id")	// todo do we need this?
   private Article article;
 
   public Category(String name, Article article) {

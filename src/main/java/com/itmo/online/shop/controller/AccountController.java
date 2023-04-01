@@ -83,7 +83,6 @@ public class AccountController {
     return "redirect:/my-address";
   }
 
-  // todo does user has password ? if yes delete password parameter
   @RequestMapping(value = "/new-user", method = RequestMethod.POST)
   public String newUserPost(@ModelAttribute("user") User user, BindingResult bindingResults,
       @ModelAttribute("new-password") String password, RedirectAttributes redirectAttributes,

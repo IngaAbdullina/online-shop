@@ -25,5 +25,4 @@ public interface ArticleRepository extends JpaRepository<Article, Long>,
 
   @Query("SELECT DISTINCT b.name FROM Brand b")
   List<String> findAllBrands();
-
 }

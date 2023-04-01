@@ -32,7 +32,6 @@ public class Size implements Comparable<Size> {
 
   @ManyToOne(fetch = FetchType.LAZY)
   @JoinColumn(name = "article_id")
-//	@Column(name = "article_id")	// todo do we need this?
   private Article article;
 
   public Size(String value, Article article) {

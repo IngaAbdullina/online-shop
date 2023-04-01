@@ -7,7 +7,9 @@ import com.itmo.online.shop.db.entity.Article;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import lombok.NoArgsConstructor;
 
+@NoArgsConstructor
 public class ArticleBuilder {
 
   private String title;
@@ -17,9 +19,6 @@ public class ArticleBuilder {
   private List<String> sizes;
   private List<String> categories;
   private List<String> brands;
-
-  public ArticleBuilder() {
-  }
 
   public ArticleBuilder withTitle(String title) {
     this.title = title;

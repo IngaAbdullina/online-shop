@@ -12,11 +12,11 @@ CREATE TABLE IF NOT EXISTS users (
 INSERT INTO users (email, password, username, role)
 VALUES ('admin@admin.com', '$2a$12$0gPEsF.welo8h4R/s8fkxuPYLTpHeps1S3gRn4OhlQ234SeZ.IoDa', 'admin', 'ROLE_ADMIN');
 
-INSERT INTO users (email, first_name, last_name, password, username, role)
-VALUES ('inga@inga.com', 'Inga', 'Abdullina','$2a$12$LtbYtEzOBdnsiD/E9Wtj2OVXhoddRh41yKDe2yfwhlNZGseqU8IlW', 'inga', 'ROLE_USER');
+INSERT INTO users (email, first_name, last_name, password, username, address_id, role)
+VALUES ('inga@inga.com', 'Inga', 'Abdullina','$2a$12$LtbYtEzOBdnsiD/E9Wtj2OVXhoddRh41yKDe2yfwhlNZGseqU8IlW', 'inga', 1, 'ROLE_USER');
 
-INSERT INTO users (email, password, username, role)
-VALUES ('test@test.com', '$2a$12$LtbYtEzOBdnsiD/E9Wtj2OfGw3e6wQ07vBruMctLLj5no9sJf74sy', 'test', 'ROLE_USER');
+INSERT INTO users (email, password, username, address_id, role)
+VALUES ('test@test.com', '$2a$12$LtbYtEzOBdnsiD/E9Wtj2OfGw3e6wQ07vBruMctLLj5no9sJf74sy', 'test', 2, 'ROLE_USER');
 
 CREATE TABLE IF NOT EXISTS address (
     id BIGSERIAL PRIMARY KEY,
@@ -28,8 +28,7 @@ CREATE TABLE IF NOT EXISTS address (
 
 INSERT INTO address (country, city, street_address, zip_code)
 VALUES ('Россия', 'Санкт-Петербург', 'Съежинская ул.', '123'),
-       ('Беларусь', 'Гродно', 'Ленина пр.', '344'),
-       ('Россия','Москва','Большая Никольская ул.','1555');
+       ('Беларусь', 'Гродно', 'Ленина пр.', '344');
 
 CREATE TABLE IF NOT EXISTS article (
     id BIGSERIAL PRIMARY KEY,
@@ -132,11 +131,12 @@ INSERT INTO payment VALUES (1,NULL,'123121412414124',343,8,2024,'Testy Testa','v
 CREATE TABLE IF NOT EXISTS shipping (
     id BIGSERIAL PRIMARY KEY,
     receiver VARCHAR,
+    shipping_date TIMESTAMP,
     address_id BIGINT,
     order_id BIGINT
 );
 
-INSERT INTO shipping VALUES (1,'Testy Testa',3,398);
+-- INSERT INTO shipping (receiver, shipping_date, address_id, order_id) VALUES ('Testy Testa',3,398);
 
 CREATE TABLE IF NOT EXISTS size (
     id BIGSERIAL PRIMARY KEY,

@@ -1,5 +1,6 @@
 package com.itmo.online.shop.db.entity;
 
+import java.util.Date;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -30,12 +31,13 @@ public class Shipping {
 	@Column(name = "receiver")
 	private String receiver;
 
+	@Column(name = "shipping_date")
+	private Date shippingDate;
+
 	@OneToOne(cascade= CascadeType.ALL, orphanRemoval = true)
 	@JoinColumn(name = "address_id")
-//	@Column(name = "address_id")	// todo do we need this?
 	private Address address;
 
 	@OneToOne
-//	@Column(name = "order_id")	// todo do we need this?
 	private Order order;
 }

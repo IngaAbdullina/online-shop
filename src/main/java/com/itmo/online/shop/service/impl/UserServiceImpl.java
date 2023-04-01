@@ -5,7 +5,6 @@ import com.itmo.online.shop.db.Role;
 import com.itmo.online.shop.repository.UserRepository;
 import com.itmo.online.shop.service.UserService;
 import com.itmo.online.shop.util.SecurityUtility;
-import java.util.Optional;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -22,8 +21,7 @@ public class UserServiceImpl implements UserService {
 
   @Override
   public User findById(Long id) {
-    Optional<User> opt = userRepository.findById(id);
-    return opt.get();  // todo
+    return userRepository.getReferenceById(id);
   }
 
   @Override
@@ -37,6 +35,7 @@ public class UserServiceImpl implements UserService {
   }
 
   @Override
+  @Transactional
   public void save(User user) {
     userRepository.save(user);
   }

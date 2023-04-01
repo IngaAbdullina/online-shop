@@ -21,7 +21,7 @@ public class StoreController {
     this.articleService = articleService;
   }
 
-  @RequestMapping("/store")  // todo error
+  @RequestMapping("/store")
   public String store(@ModelAttribute("filters") ArticleFilterForm filters, Model model) {
     Integer page = filters.getPage();
     int pageNumber = (page == null || page <= 0) ? 0 : page - 1;
