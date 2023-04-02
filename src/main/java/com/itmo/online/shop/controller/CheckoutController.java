@@ -1,19 +1,20 @@
 package com.itmo.online.shop.controller;
 
+import com.itmo.online.shop.db.ShoppingCart;
 import com.itmo.online.shop.db.entity.Address;
 import com.itmo.online.shop.db.entity.Order;
 import com.itmo.online.shop.db.entity.Payment;
 import com.itmo.online.shop.db.entity.Shipping;
-import com.itmo.online.shop.db.ShoppingCart;
 import com.itmo.online.shop.db.entity.User;
 import com.itmo.online.shop.service.OrderService;
 import com.itmo.online.shop.service.ShoppingCartService;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -47,7 +48,7 @@ public class CheckoutController {
     return "checkout";
   }
 
-  @RequestMapping(value = "/checkout", method = RequestMethod.POST)
+  @PostMapping(value = "/checkout")
   public String placeOrder(@ModelAttribute("shipping") Shipping shipping,
       @ModelAttribute("address") Address address,
       @ModelAttribute("payment") Payment payment,
@@ -62,7 +63,7 @@ public class CheckoutController {
     return "redirect:/order-submitted";
   }
 
-  @RequestMapping(value = "/order-submitted", method = RequestMethod.GET)
+  @GetMapping(value = "/order-submitted")
   public String orderSubmitted(Model model) {
     Order order = (Order) model.asMap().get("order");
     if (order == null) {
@@ -71,5 +72,4 @@ public class CheckoutController {
     model.addAttribute("order", order);
     return "orderSubmitted";
   }
-
 }

@@ -1,7 +1,7 @@
 package com.itmo.online.shop.controller;
 
-import com.itmo.online.shop.db.entity.Article;
 import com.itmo.online.shop.db.ArticleBuilder;
+import com.itmo.online.shop.db.entity.Article;
 import com.itmo.online.shop.db.entity.Brand;
 import com.itmo.online.shop.db.entity.Category;
 import com.itmo.online.shop.db.entity.Size;
@@ -12,8 +12,8 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
@@ -36,7 +36,7 @@ public class ArticleController {
     return "addArticle";
   }
 
-  @RequestMapping(value = "/add", method = RequestMethod.POST)
+  @PostMapping(value = "/add")
   public String addArticlePost(@ModelAttribute("article") Article article,
       HttpServletRequest request) {
     Article newArticle = new ArticleBuilder()
@@ -84,7 +84,7 @@ public class ArticleController {
     return "editArticle";
   }
 
-  @RequestMapping(value = "/edit", method = RequestMethod.POST)
+  @PostMapping(value = "/edit")
   public String editArticlePost(@ModelAttribute("article") Article article,
       HttpServletRequest request) {
     Article newArticle = new ArticleBuilder()
@@ -106,5 +106,4 @@ public class ArticleController {
     articleService.deleteArticleById(id);
     return "redirect:article-list";
   }
-
 }

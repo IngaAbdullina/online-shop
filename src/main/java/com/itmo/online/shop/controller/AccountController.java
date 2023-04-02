@@ -3,10 +3,10 @@ package com.itmo.online.shop.controller;
 import com.itmo.online.shop.db.entity.Address;
 import com.itmo.online.shop.db.entity.Order;
 import com.itmo.online.shop.db.entity.User;
+import com.itmo.online.shop.security.UserSecurityService;
 import com.itmo.online.shop.service.AddressService;
 import com.itmo.online.shop.service.OrderService;
 import com.itmo.online.shop.service.UserService;
-import com.itmo.online.shop.security.UserSecurityService;
 import com.itmo.online.shop.util.SecurityUtility;
 import java.security.Principal;
 import java.util.List;
@@ -18,8 +18,8 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -70,7 +70,7 @@ public class AccountController {
     return "myAddress";
   }
 
-  @RequestMapping(value = "/update-user-address", method = RequestMethod.POST)
+  @PostMapping(value = "/update-user-address")
   public String updateUserAddress(@ModelAttribute("address") Address address,
       Principal principal) throws Exception {
     User currentUser = userService.findByUsername(principal.getName());
@@ -83,7 +83,7 @@ public class AccountController {
     return "redirect:/my-address";
   }
 
-  @RequestMapping(value = "/new-user", method = RequestMethod.POST)
+  @PostMapping(value = "/new-user")
   public String newUserPost(@ModelAttribute("user") User user, BindingResult bindingResults,
       @ModelAttribute("new-password") String password, RedirectAttributes redirectAttributes,
       Model model) {
@@ -109,8 +109,7 @@ public class AccountController {
     return "redirect:/my-profile";
   }
 
-  // todo разбить на два: обновить инфо и обновить пароль
-  @RequestMapping(value = "/update-user-info", method = RequestMethod.POST)
+  @PostMapping(value = "/update-user-info")
   public String updateUserInfo(@ModelAttribute("user") User user,
       @RequestParam("newPassword") String newPassword,
       Model model, Principal principal) throws Exception {
@@ -118,19 +117,19 @@ public class AccountController {
     if (currentUser == null) {
       throw new Exception("User not found");
     }
-    // check username already exists
+
     User existingUser = userService.findByUsername(user.getUsername());
     if (existingUser != null && !existingUser.getId().equals(currentUser.getId())) {
       model.addAttribute("usernameExists", true);
       return "myProfile";
     }
-    // check email already exists
+
     existingUser = userService.findByEmail(user.getEmail());
     if (existingUser != null && !existingUser.getId().equals(currentUser.getId())) {
       model.addAttribute("emailExists", true);
       return "myProfile";
     }
-    // update password
+
     if (StringUtils.isNotBlank(newPassword)) {
       BCryptPasswordEncoder passwordEncoder = SecurityUtility.passwordEncoder();
       String dbPassword = currentUser.getPassword();
