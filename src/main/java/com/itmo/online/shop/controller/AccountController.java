@@ -3,6 +3,8 @@ package com.itmo.online.shop.controller;
 import com.itmo.online.shop.db.entity.Address;
 import com.itmo.online.shop.db.entity.Order;
 import com.itmo.online.shop.db.entity.User;
+import com.itmo.online.shop.exception.ApiException;
+import com.itmo.online.shop.exception.ErrorCode;
 import com.itmo.online.shop.security.UserSecurityService;
 import com.itmo.online.shop.service.AddressService;
 import com.itmo.online.shop.service.OrderService;
@@ -75,7 +77,8 @@ public class AccountController {
       Principal principal) throws Exception {
     User currentUser = userService.findByUsername(principal.getName());
     if (currentUser == null) {
-      throw new Exception("User not found");
+      throw new ApiException(ErrorCode.NOT_FOUND,
+          String.format("User %s not found", principal.getName()));
     }
     address = addressService.save(address);
     currentUser.setAddress(address);
@@ -115,7 +118,8 @@ public class AccountController {
       Model model, Principal principal) throws Exception {
     User currentUser = userService.findByUsername(principal.getName());
     if (currentUser == null) {
-      throw new Exception("User not found");
+      throw new ApiException(ErrorCode.NOT_FOUND,
+          String.format("User %s not found", principal.getName()));
     }
 
     User existingUser = userService.findByUsername(user.getUsername());

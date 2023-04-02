@@ -52,7 +52,7 @@ public class ShoppingCartController {
 
   @RequestMapping("/update-item")
   public String updateItemQuantity(@RequestParam("id") Long cartItemId,
-      @RequestParam("qty") Integer qty, Model model) {
+      @RequestParam("qty") Integer qty) {
     CartItem cartItem = shoppingCartService.findCartItemById(cartItemId);
     if (cartItem.canUpdateQuantity(qty)) {
       shoppingCartService.updateCartItem(cartItem, qty);
