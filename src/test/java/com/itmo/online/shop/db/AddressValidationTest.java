@@ -33,5 +33,23 @@ public class AddressValidationTest {
     Set<ConstraintViolation<Address>> violations = validator.validate(address);
     assertFalse(violations.isEmpty());
     violations.forEach(violation -> assertEquals(violation.getMessage(), "не должно быть пустым"));
+
+    address.setCountry("     ");
+    address.setCity("      ");
+    address.setStreetAddress("       ");
+    address.setZipCode("      ");
+
+    violations = validator.validate(address);
+    assertFalse(violations.isEmpty());
+    violations.forEach(violation -> assertEquals(violation.getMessage(), "не должно быть пустым"));
+
+    address.setCountry(null);
+    address.setCity(null);
+    address.setStreetAddress(null);
+    address.setZipCode(null);
+
+    violations = validator.validate(address);
+    assertFalse(violations.isEmpty());
+    violations.forEach(violation -> assertEquals(violation.getMessage(), "не должно быть пустым"));
   }
 }

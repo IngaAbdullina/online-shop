@@ -23,6 +23,10 @@ public class AddressServiceImpl implements AddressService {
   @Override
   @Transactional
   public Address save(Address address) {
+    address.setCountry(address.getCountry().trim());
+    address.setCity(address.getCity().trim());
+    address.setStreetAddress(address.getStreetAddress().trim());
+    address.setZipCode(address.getZipCode().trim());
     return addressRepository.save(address);
   }
 }

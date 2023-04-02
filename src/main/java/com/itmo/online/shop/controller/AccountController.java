@@ -92,21 +92,29 @@ public class AccountController {
       Model model) {
     model.addAttribute("email", user.getEmail());
     model.addAttribute("username", user.getUsername());
+    user.setUsername(user.getUsername().trim());
+    user.setPassword(user.getPassword().trim());
+    user.setEmail(user.getEmail().trim());
+
     boolean invalidFields = false;
     if (bindingResults.hasErrors()) {
       return "redirect:/login";
     }
+
     if (userService.findByUsername(user.getUsername()) != null) {
       redirectAttributes.addFlashAttribute("usernameExists", true);
       invalidFields = true;
     }
+
     if (userService.findByEmail(user.getEmail()) != null) {
       redirectAttributes.addFlashAttribute("emailExists", true);
       invalidFields = true;
     }
+
     if (invalidFields) {
       return "redirect:/login";
     }
+
     user = userService.createUser(user.getUsername(), password, user.getEmail());
     userSecurityService.authenticateUser(user.getUsername());
     return "redirect:/my-profile";
@@ -116,6 +124,10 @@ public class AccountController {
   public String updateUserInfo(@ModelAttribute("user") User user,
       @RequestParam("newPassword") String newPassword,
       Model model, Principal principal) throws Exception {
+    user.setUsername(user.getUsername().trim());
+    user.setPassword(user.getPassword().trim());
+    user.setEmail(user.getEmail().trim());
+
     User currentUser = userService.findByUsername(principal.getName());
     if (currentUser == null) {
       throw new ApiException(ErrorCode.NOT_FOUND,
