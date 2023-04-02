@@ -6,6 +6,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -24,15 +25,19 @@ public class Address {
   @Column(name = "id")
   private Long id;
 
+  @NotBlank
   @Column(name = "country")
   private String country;
 
+  @NotBlank
   @Column(name = "city")
   private String city;
 
+  @NotBlank
   @Column(name = "street_address")
   private String streetAddress;
 
+  @NotBlank
   @Column(name = "zip_code")
   private String zipCode;
 }

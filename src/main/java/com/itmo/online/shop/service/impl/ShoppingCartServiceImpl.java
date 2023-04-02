@@ -51,8 +51,7 @@ public class ShoppingCartServiceImpl implements ShoppingCartService {
       cartItem.setQuantity(qty);
     }
     cartItem.setSize(size);
-    cartItem = cartItemRepository.save(cartItem);
-    return cartItem;
+    return cartItemRepository.save(cartItem);
   }
 
   @Override

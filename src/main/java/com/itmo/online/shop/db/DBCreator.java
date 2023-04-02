@@ -31,8 +31,7 @@ public class DBCreator {
     }
 
     Optional<String> usernameOpt = PropertiesUtils.determinePropertyValue(
-        OnlineShopApplication.class,
-        "spring.datasource.username");
+        OnlineShopApplication.class, "spring.datasource.username");
     if (!usernameOpt.isPresent()) {
       throw new IllegalStateException("spring.datasource.username is empty");
     }
@@ -42,8 +41,7 @@ public class DBCreator {
     }
 
     Optional<String> passwordOpt = PropertiesUtils.determinePropertyValue(
-        OnlineShopApplication.class,
-        "spring.datasource.password");
+        OnlineShopApplication.class, "spring.datasource.password");
     if (!passwordOpt.isPresent()) {
       throw new IllegalStateException("spring.datasource.password is empty");
     }
@@ -64,15 +62,14 @@ public class DBCreator {
     }
 
     log.info("Flyway initialized with params: url={} username={}", url, username);
-
     log.info("Connecting to {}...", dbName);
     if (dbExists(schema, server, dbName, username, password)) {
-      log.info("db {} exists", dbName);
+      log.info("Database {} exists", dbName);
       return;
     }
 
     if (createDb(schema, server, dbName, username, password)) {
-      log.info("DB installation complete");
+      log.info("Database installation complete");
     }
   }
 
