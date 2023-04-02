@@ -32,7 +32,7 @@ VALUES ('Россия', 'Санкт-Петербург', 'Съежинская �
 
 CREATE TABLE IF NOT EXISTS article (
     id BIGSERIAL PRIMARY KEY,
-    picture VARCHAR,
+    picture VARCHAR UNIQUE,
     price FLOAT8,
     stock INT,
     title VARCHAR
@@ -44,6 +44,17 @@ CREATE TABLE IF NOT EXISTS brand (
     article_id BIGINT
 );
 
+CREATE TABLE IF NOT EXISTS category (
+    id BIGSERIAL PRIMARY KEY,
+    name VARCHAR,article_id BIGINT
+);
+
+CREATE TABLE IF NOT EXISTS size (
+    id BIGSERIAL PRIMARY KEY,
+    value VARCHAR,
+    article_id BIGINT
+);
+
 CREATE TABLE IF NOT EXISTS cart_item (
     id BIGSERIAL PRIMARY KEY,
     quantity INT NOT NULL,
@@ -51,18 +62,6 @@ CREATE TABLE IF NOT EXISTS cart_item (
     article_id BIGINT,
     order_id BIGINT,
     user_id BIGINT
-);
-
-CREATE TABLE IF NOT EXISTS category (
-    id BIGSERIAL PRIMARY KEY,
-    name VARCHAR,
-    article_id BIGINT
-);
-
-CREATE TABLE IF NOT EXISTS size (
-    id BIGSERIAL PRIMARY KEY,
-    value VARCHAR,
-    article_id BIGINT
 );
 
 CREATE TABLE IF NOT EXISTS payment (
