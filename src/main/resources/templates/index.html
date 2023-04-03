@@ -2,27 +2,22 @@
 <html lang="en" xmlns:th="http://www.w3.org./1999/xhtml">
 <head th:replace="common/header :: common-header" />
 
-
 <body class="d-flex flex-column" >
   <div th:replace="common/header :: navbar"> </div>
-
-  
   <div class="jumbotron jumbotron-fluid mt-0" th:style="'background-image: url(/image/background/adidas-background.jpg);'">
   	<div class="container">
       <div class="row text-left py-5">   
-         <div class="col-sm-12 col-md-10 offset-md-1 col-lg-8 offset-lg-3 col-xl-6 offset-xl-6 my-auto">  
-            <h2 class="bg-warning text-dark d-inline-block p-1">Brand New</h2>
-            <h1 class="font-weight-bold">High Quality Shoes</h1>
-            <a th:href="@{/store}" class="btn btn-primary rounded-pill" data-addclass-on-xs="btn-sm">SHOP NOW</a>       
+         <div class="col-sm-12 col-md-10 offset-md-1 col-lg-8 offset-lg-3 col-xl-6 offset-xl-6 my-auto">
+            <h1 class="font-weight-bold">Спортивная одежда высокого качества</h1>
+            <a th:href="@{/store}" class="btn btn-primary rounded-pill" data-addclass-on-xs="btn-sm">За покупками</a>
           </div> 
       </div>
   </div>
   </div>  
-   
-  
+
   <section class="section py-5 ">
     <div class="container text-center">
-      <h4 class="font-weight-bold ">Featured products</h4>
+      <h4 class="font-weight-bold ">Рекомендуемые товары</h4>
         <div class="featured-items mt-4">        
           <div class="card card-product card-featured" th:each="article : ${articles}">
             <div class="card-body">
@@ -34,59 +29,44 @@
         </div>
     </div>
   </section>
-  
-  
-   <!-- start section -->
+
   <section class="section py-5 bg-white">
     <div class="container">
       <div class="row">
         <div class="col-sm-6 col-md-4 mb-2">
           <div class="text-center features-card">
             <i data-feather="truck" class="text-info"></i>
-            <h5>Free Shipping</h5>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing
-                elit. Dolorum, eius, quae, aliquam.</p>
+            <h5>Бесплатная доставка</h5>
           </div>
         </div>
         <div class="col-sm-6 col-md-4 mb-2">
           <div class="text-center features-card">
             <i data-feather="user" class="text-info"></i>
-            <h5>Support 24/7</h5>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing
-                elit. Dolorum, eius, quae, aliquam.</p>
+            <h5>Поддержка 24/7</h5>
           </div>
         </div>
         <div class="col-sm-6 col-md-4 mb-2">
           <div class="text-center features-card">
             <i data-feather="gift" class="text-info"></i>
-            <h5>Gift cards</h5>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing
-                elit. Dolorum, eius, quae, aliquam.</p>
+            <h5>Подарочные карты</h5>
           </div>
         </div>        
       </div>
-    </div> <!-- end container -->
-  </section> <!-- end section -->
-  
+    </div>
+  </section>
 
-  
   <section class="section pt-5">
     <div class="container text-center">
-      <h4 class="font-weight-bold">Popular brands</h4>
+      <h4 class="font-weight-bold">Популярные бренды</h4>
       <div class="featured-brands mt-3">   
-         <img class="img-fluid py-5 px-5" src="/image/brands/01.png">
-         <img class="img-fluid py-5 px-5" src="/image/brands/02.png">
-         <img class="img-fluid py-5 px-5" src="/image/brands/03.png">
-         <img class="img-fluid py-5 px-5" src="/image/brands/04.png">
-         <img class="img-fluid py-5 px-5" src="/image/brands/05.png">
-         <img class="img-fluid py-5 px-5" src="/image/brands/06.png">
-         <img class="img-fluid py-5 px-5" src="/image/brands/07.png">
-      </div>     
-      
+         <img class="img-fluid py-5 px-5" src="/image/brands/adidas.png">
+         <img class="img-fluid py-5 px-5" src="/image/brands/nike.png">
+         <img class="img-fluid py-5 px-5" src="/image/brands/puma.png">
+         <img class="img-fluid py-5 px-5" src="/image/brands/reebok.png">
+      </div>
     </div>  
   </section>
-   
-  
+
   <div th:replace="common/header :: footer"> </div>  
   <div th:replace="common/header :: body-scripts"> </div>
   

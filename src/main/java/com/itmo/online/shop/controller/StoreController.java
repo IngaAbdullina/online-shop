@@ -1,9 +1,11 @@
 package com.itmo.online.shop.controller;
 
 import com.itmo.online.shop.db.entity.Article;
+import com.itmo.online.shop.db.entity.Brand;
 import com.itmo.online.shop.form.ArticleFilterForm;
 import com.itmo.online.shop.service.ArticleService;
 import com.itmo.online.shop.type.SortFilter;
+import java.util.stream.Collectors;
 import javax.websocket.server.PathParam;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -43,9 +45,17 @@ public class StoreController {
   @RequestMapping("/article-detail")
   public String articleDetail(@PathParam("id") Long id, Model model) {
     Article article = articleService.findArticleById(id);
+    String brands = article.getBrands().stream()
+        .map(brand -> String.format("%s", brand.getName()))
+        .collect(Collectors.joining(", "));
+    String categories = article.getCategories().stream()
+        .map(category -> String.format("%s", category.getName()))
+        .collect(Collectors.joining(", "));
     model.addAttribute("article", article);
     model.addAttribute("notEnoughStock", model.asMap().get("notEnoughStock"));
     model.addAttribute("addArticleSuccess", model.asMap().get("addArticleSuccess"));
+    model.addAttribute("brands", brands);
+    model.addAttribute("categories", categories);
     return "articleDetail";
   }
 }

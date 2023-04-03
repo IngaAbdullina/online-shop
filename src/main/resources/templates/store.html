@@ -1,8 +1,6 @@
 <!doctype html>
 <html lang="en" xmlns:th="http://www.w3.org./1999/xhtml">
 <head th:replace="common/header :: common-header">
-  
-
 
 <body class="d-flex flex-column">
   <div th:replace="common/header :: navbar"> </div>
@@ -11,13 +9,12 @@
    <div class="container page-content">
       <div class="row gutters-3">
 
-        <!-- Shop Filters -->
         <div class="col-lg-3 col-md-4">
           <div class="accordion accordion-caret accordion-sidebar d-none d-md-block">
             <div class="card">
               <div class="card-header">
                 <a href="#filter-categories" data-toggle="collapse" aria-expanded="true" aria-controls="filter-categories" role="button" class="h6">
-                  CATEGORIES
+                  КАТЕГОРИИ
                 </a>
               </div>
               <div id="filter-categories" class="collapse show">
@@ -33,7 +30,7 @@
             <div class="card">
               <div class="card-header">
                 <a href="#filter-price" data-toggle="collapse" aria-expanded="true" aria-controls="filter-price" role="button" class="h6">
-                  PRICE
+                  ЦЕНА
                 </a>
               </div>
               <div id="filter-price" class="collapse show">
@@ -50,7 +47,7 @@
             <div class="card">
               <div class="card-header">
                 <a href="#filter-size" data-toggle="collapse" aria-expanded="true" aria-controls="filter-size" role="button" class="h6">
-                  SIZE
+                  РАЗМЕР
                 </a>
               </div>
               <div id="filter-size" class="collapse show">
@@ -66,7 +63,7 @@
             <div class="card">
               <div class="card-header">
                 <a href="#filter-brands" data-toggle="collapse" aria-expanded="true" aria-controls="filter-brands" role="button" class="h6">
-                  BRANDS
+                  БРЕНДЫ
                 </a>
               </div>
               <div id="filter-brands" class="collapse show">
@@ -84,13 +81,10 @@
                  <button type="submit" form="filter-form" class="btn btn-primary rounded-pill btn-block btn-sm">APPLY</button>              
               </div>
             </div>
-          </div>   <!-- end of accordion sidebar -->         
-                         
-        </div>        
-        <!-- /Shop Filters -->
+          </div>
+        </div>
 
-        <div class="col-lg-9 col-md-8">                
-          <!-- /Shop Toolbar -->
+        <div class="col-lg-9 col-md-8">
           <div class="card mb-3">
             <div class="row card-body d-flex justify-content-between align-items-start py-2">
             
@@ -111,28 +105,26 @@
                 <button type="button" class="btn btn-light btn-sm border rounded-pill" data-toggle="dropdown" 
                         aria-haspopup="true" aria-expanded="false">                        
                   <th:block th:switch="${filters.sort}">                    
-                    <span id="dropdown-sort-text" th:case="'priceasc'">Low - High Price</span>
-                    <span id="dropdown-sort-text" th:case="'pricedesc'">High - Low Price</span>
-                    <span id="dropdown-sort-text" th:case="'alphasc'">A - Z Order</span>
-                    <span id="dropdown-sort-text" th:case="'alphdesc'">Z - A Order</span>
-                    <span id="dropdown-sort-text" th:case="*">Newest</span>
-                  </th:block>      
+                    <span id="dropdown-sort-text" th:case="'priceasc'">Цена по возрастанию</span>
+                    <span id="dropdown-sort-text" th:case="'pricedesc'">Цена по убыванию</span>
+                    <span id="dropdown-sort-text" th:case="'alphasc'">Алфавитный порядок А-Я</span>
+                    <span id="dropdown-sort-text" th:case="'alphdesc'">Алфавитный порядок Я-А</span>
+                    <span id="dropdown-sort-text" th:case="*">Новинки</span>
+                  </th:block>
                   <i data-feather="chevron-down"></i>
                 </button>
                 <div class="dropdown-menu dropdown-menu-right shadow-sm">
-                  <button class="dropdown-item button-sort" type="button" value="newest">Newest</button>
-                  <button class="dropdown-item button-sort" type="button" value="priceasc">Low - High Price</button>
-                  <button class="dropdown-item button-sort" type="button" value="pricedesc">High - Low Price</button>
-                  <button class="dropdown-item button-sort" type="button" value="alphasc">A - Z Order</button>
-                  <button class="dropdown-item button-sort" type="button" value="alphdesc">Z - A Order</button>
+                  <button class="dropdown-item button-sort" type="button" value="newest">Новинки</button>
+                  <button class="dropdown-item button-sort" type="button" value="priceasc">Цена по возрастанию</button>
+                  <button class="dropdown-item button-sort" type="button" value="pricedesc">Цена по убыванию</button>
+                  <button class="dropdown-item button-sort" type="button" value="alphasc">Алфавитный порядок А-Я</button>
+                  <button class="dropdown-item button-sort" type="button" value="alphdesc">Алфавитный порядок Я-А</button>
                 </div>
               </div> 
               <input id="input-sort" hidden="hidden" type="text" name="sort" th:value="${filters.sort}">                           
             </div>
           </div>
-          <!-- Shop toolbar -->
-          
-          <!-- Shop Grid -->          
+
           <div class="grid grid-gap-3 grid-col-2 grid-col-lg-3 mb-3">
               <div class="card card-product" th:each="article : ${articles}">
                 <div class="card-body">
@@ -141,22 +133,18 @@
                   <div class="price"><span class="h5" th:text="'$'+${#numbers.formatDecimal(article.price, 0, T(java.lang.Math).round(article.price) == article.price ? 0 : 2)}"> </span></div>
                 </div>              
               </div>
-          </div>      
-          <!-- /Shop Grid -->
+          </div>
 
-          <!-- Pagination -->
           <div class="card" >
             <div class="card-body d-flex justify-content-center">
               <div id="light-pagination"></div>
             </div>
           </div>
-          <!-- /Pagination -->
 
         </div>
       </div>
-    </div> <!-- end container -->    
+    </div>
 
-    <!-- Filter Modal -->
     <div class="modal fade" id="filterModal" tabindex="-1" role="dialog" aria-hidden="true">
       <div class="modal-dialog" role="document">
         <div class="modal-content">
@@ -171,10 +159,8 @@
         </div>
       </div>
     </div>
-    <!-- /Filter Modal -->
         
-    <input id="page" hidden="hidden" type="text" name="page" th:value="${filters.page}">     
-    
+    <input id="page" hidden="hidden" type="text" name="page" th:value="${filters.page}">
     <input id="totalitems" hidden="hidden" type="text" th:value="${totalitems}">
     <input id="itemsperpage" hidden="hidden" type="text" th:value="${itemsperpage}">   
 
@@ -186,15 +172,13 @@
   <script>    
     var sidebarContent = $('.accordion-sidebar').html()
     $('#filterModal').on('show.bs.modal', function () {
-      // move filter contents to modal body
       $(this).find('.modal-body').html('<div class="accordion accordion-caret accordion-sidebar accordion-modal">'+sidebarContent+'</div>')
-      // empty the sidebar filter contents
       $('.accordion-sidebar:not(.accordion-modal)').html('')
     }) 
     $('#filterModal').on('hidden.bs.modal', function () {
-      $('.accordion-modal').remove() // remove modal filter contents
-      $('.accordion-sidebar').html(sidebarContent) // move filter contents back to the sidebar
-    })    
+      $('.accordion-modal').remove()
+      $('.accordion-sidebar').html(sidebarContent)
+    })
     $('.button-sort').click(function () {
       var value = $(this).val()
       var text = $(this).text()      
