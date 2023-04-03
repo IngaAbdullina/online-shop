@@ -1,17 +1,3 @@
-CREATE OR replace FUNCTION is_article_id_null(value bigint)
-    RETURNS boolean
-AS
-$$
-BEGIN
-    RETURN (value::bigint IS NULL);
-EXCEPTION
-    WHEN OTHERS THEN
-        RETURN FALSE;
-END;
-$$
-LANGUAGE plpgsql
-immutable;
-
 CREATE OR REPLACE FUNCTION initialize_category_table_values()
     RETURNS VOID AS $$
 DECLARE
@@ -29,6 +15,4 @@ $$
 LANGUAGE plpgsql;
 
 SELECT initialize_category_table_values();
-
-DROP FUNCTION is_article_id_null(value bigint);
 DROP FUNCTION initialize_category_table_values();

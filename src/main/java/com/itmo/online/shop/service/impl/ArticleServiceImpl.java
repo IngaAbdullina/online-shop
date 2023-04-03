@@ -5,6 +5,7 @@ import com.itmo.online.shop.repository.ArticleRepository;
 import com.itmo.online.shop.repository.ArticleSpecification;
 import com.itmo.online.shop.service.ArticleService;
 import java.util.List;
+import java.util.Optional;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.Cacheable;
@@ -15,6 +16,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 @Service
+@Transactional
 public class ArticleServiceImpl implements ArticleService {
 
   private final ArticleRepository articleRepository;
@@ -47,18 +49,17 @@ public class ArticleServiceImpl implements ArticleService {
 
   @Override
   public Article findArticleById(Long id) {
-    return articleRepository.getReferenceById(id);
+    Optional<Article> opt = articleRepository.findById(id);
+    return opt.get();
   }
 
   @Override
-  @Transactional
   @CacheEvict(value = {"sizes", "categories", "brands"}, allEntries = true)
   public Article saveArticle(Article article) {
     return articleRepository.save(article);
   }
 
   @Override
-  @Transactional
   @CacheEvict(value = {"sizes", "categories", "brands"}, allEntries = true)
   public void deleteArticleById(Long id) {
     articleRepository.deleteById(id);

@@ -5,12 +5,14 @@ import com.itmo.online.shop.db.Role;
 import com.itmo.online.shop.repository.UserRepository;
 import com.itmo.online.shop.service.UserService;
 import com.itmo.online.shop.util.SecurityUtility;
+import java.util.Optional;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 @Slf4j
 @Service
+@Transactional
 public class UserServiceImpl implements UserService {
 
   private final UserRepository userRepository;
@@ -21,7 +23,9 @@ public class UserServiceImpl implements UserService {
 
   @Override
   public User findById(Long id) {
-    return userRepository.getReferenceById(id);
+//    return userRepository.getReferenceById(id);
+    Optional<User> opt = userRepository.findById(id);
+    return opt.get();
   }
 
   @Override
@@ -41,7 +45,6 @@ public class UserServiceImpl implements UserService {
   }
 
   @Override
-  @Transactional
   public User createUser(String username, String password, String email) {
     User user = new User();
     user.setUsername(username);

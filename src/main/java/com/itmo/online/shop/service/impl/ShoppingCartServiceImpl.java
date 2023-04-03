@@ -6,12 +6,14 @@ import com.itmo.online.shop.db.ShoppingCart;
 import com.itmo.online.shop.db.entity.User;
 import com.itmo.online.shop.repository.CartItemRepository;
 import com.itmo.online.shop.service.ShoppingCartService;
+import java.util.Optional;
 import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 @Service
+@Transactional
 public class ShoppingCartServiceImpl implements ShoppingCartService {
 
   private final CartItemRepository cartItemRepository;
@@ -33,11 +35,12 @@ public class ShoppingCartServiceImpl implements ShoppingCartService {
 
   @Override
   public CartItem findCartItemById(Long cartItemId) {
-    return cartItemRepository.getReferenceById(cartItemId);
+//    return cartItemRepository.getReferenceById(cartItemId);
+    Optional<CartItem> opt = cartItemRepository.findById(cartItemId);
+    return opt.get();
   }
 
   @Override
-  @Transactional
   @CacheEvict(value = "itemcount", allEntries = true)
   public CartItem addArticleToShoppingCart(Article article, User user, int qty, String size) {
     ShoppingCart shoppingCart = this.getShoppingCart(user);
@@ -55,14 +58,12 @@ public class ShoppingCartServiceImpl implements ShoppingCartService {
   }
 
   @Override
-  @Transactional
   @CacheEvict(value = "itemcount", allEntries = true)
   public void removeCartItem(CartItem cartItem) {
     cartItemRepository.deleteById(cartItem.getId());
   }
 
   @Override
-  @Transactional
   @CacheEvict(value = "itemcount", allEntries = true)
   public void updateCartItem(CartItem cartItem, Integer qty) {
     if (qty == null || qty <= 0) {
@@ -74,7 +75,6 @@ public class ShoppingCartServiceImpl implements ShoppingCartService {
   }
 
   @Override
-  @Transactional
   @CacheEvict(value = "itemcount", allEntries = true)
   public void clearShoppingCart(User user) {
     cartItemRepository.deleteAllByUserAndOrderIsNull(user);

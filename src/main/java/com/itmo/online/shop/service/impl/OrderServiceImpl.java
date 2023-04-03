@@ -15,11 +15,13 @@ import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 @Service
+@Transactional
 public class OrderServiceImpl implements OrderService {
 
   private final OrderRepository orderRepository;
@@ -34,7 +36,6 @@ public class OrderServiceImpl implements OrderService {
   }
 
   @Override
-  @Transactional
   @CacheEvict(value = "itemcount", allEntries = true)
   public synchronized Order createOrder(ShoppingCart shoppingCart, Shipping shipping,
       Payment payment, User user) {
@@ -66,7 +67,9 @@ public class OrderServiceImpl implements OrderService {
 
   @Override
   public Order findOrderWithDetails(Long id) {
-    return orderRepository.findEagerById(id);
+//    Order order = orderRepository.findEagerById(id);
+    Optional<Order> order = orderRepository.findById(id);
+    return order.get();
   }
 
   public List<Order> findByUser(User user) {

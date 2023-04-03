@@ -3,10 +3,12 @@ package com.itmo.online.shop.service.impl;
 import com.itmo.online.shop.db.entity.Address;
 import com.itmo.online.shop.repository.AddressRepository;
 import com.itmo.online.shop.service.AddressService;
+import java.util.Optional;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 @Service
+@Transactional
 public class AddressServiceImpl implements AddressService {
 
   private final AddressRepository addressRepository;
@@ -17,11 +19,12 @@ public class AddressServiceImpl implements AddressService {
 
   @Override
   public Address findById(Long id) {
-    return addressRepository.getReferenceById(id);
+//    return addressRepository.getReferenceById(id);
+    Optional<Address> opt = addressRepository.findById(id);
+    return opt.get();
   }
 
   @Override
-  @Transactional
   public Address save(Address address) {
     address.setCountry(address.getCountry().trim());
     address.setCity(address.getCity().trim());

@@ -33,7 +33,7 @@
             <h2 class="card-title" th:text="${article.title}"></h2>
             <div class="d-flex align-items-center">
               <h2 class="price font-weight-bold mr-3">
-                <span th:text="'$'+${#numbers.formatDecimal(article.price, 0, T(Math).round(article.price) == article.price ? 0 : 2)}"></span>
+                <span th:text="'$'+${#numbers.formatDecimal(article.price, 0, T(java.lang.Math).round(article.price) == article.price ? 0 : 2)}"></span>
               </h2>              
               <h6>(<span th:text="${article.stock}"></span> in stock)</h6>
             </div>            
@@ -51,7 +51,7 @@
               <div class="form-row">
                 <div class="form-group col-sm-3">
                   <label class="font-weight-bold" for="quantity">Quantity</label>
-                  <select class="form-control" id="quantity" th:name="qty">
+                  <select class="form-control" id="quantity" th:name="quantity">
                     <option>1</option>
                     <option>2</option>
                     <option>3</option>

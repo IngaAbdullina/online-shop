@@ -138,7 +138,7 @@
                 <div class="card-body">
                   <a th:href="@{/article-detail?id=}+${article.id}"><img class="card-img-top" th:src="${article.picture} ? '/image/article/pictures/'+${article.picture}+'.jpg' : '/image/article/itemexample.jpg'" alt="Card image cap"></a>
                   <a th:href="@{/article-detail?id=}+${article.id}" class="card-title" th:text="${article.title}"></a>
-                  <div class="price"><span class="h5" th:text="'$'+${#numbers.formatDecimal(article.price, 0, T(Math).round(article.price) == article.price ? 0 : 2)}"> </span></div>
+                  <div class="price"><span class="h5" th:text="'$'+${#numbers.formatDecimal(article.price, 0, T(java.lang.Math).round(article.price) == article.price ? 0 : 2)}"> </span></div>
                 </div>              
               </div>
           </div>      
