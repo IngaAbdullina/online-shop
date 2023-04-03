@@ -1,39 +1,24 @@
-CREATE OR replace FUNCTION is_article_id_null(value bigint)
-    RETURNS boolean
-AS
-$$
-BEGIN
-    RETURN (value::bigint IS NULL);
-EXCEPTION
-    WHEN OTHERS THEN
-        RETURN FALSE;
-END;
-$$
-LANGUAGE plpgsql
-immutable;
-
 CREATE OR REPLACE FUNCTION initialize_brand_table_values()
     RETURNS VOID AS $$
 DECLARE
+    cust_brand_name VARCHAR;
     cust_article_id INTEGER;
-    is_article_id_null BOOL;
-
-    row brand%rowtype;
+    article_row article%rowtype;
 BEGIN
-    FOR row in SELECT * FROM brand LOOP
-        is_article_id_null = is_article_id_null(row.article_id);
-        cust_article_id := row.id;
-
-    CASE
-        WHEN is_article_id_null THEN UPDATE brand SET article_id = cust_article_id WHERE id=row.id;
-        ELSE
+    FOR article_row in SELECT * FROM article LOOP
+        cust_article_id := article_row.id;
+        CASE
+                WHEN cust_article_id BETWEEN 1 AND 75 THEN cust_brand_name := 'Adidas';
+                WHEN cust_article_id BETWEEN 76 AND 135 THEN cust_brand_name := 'Nike';
+                WHEN cust_article_id BETWEEN 136 AND 193 THEN cust_brand_name := 'Puma';
+                WHEN cust_article_id BETWEEN 194 AND 258 THEN cust_brand_name := 'Reebok';
+            ELSE
         END CASE;
+        INSERT INTO brand (name, article_id) VALUES (cust_brand_name, cust_article_id);
     END LOOP;
 END
 $$
 LANGUAGE plpgsql;
 
 SELECT initialize_brand_table_values();
-
-DROP FUNCTION is_article_id_null(value bigint);
 DROP FUNCTION initialize_brand_table_values();

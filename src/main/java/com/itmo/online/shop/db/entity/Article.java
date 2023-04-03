@@ -11,9 +11,7 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import lombok.AllArgsConstructor;
-import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
 import lombok.ToString;
 
 @NoArgsConstructor
@@ -141,17 +139,17 @@ public class Article {
 		this.picture = picture;
 	}
 
-  @Override
-  public String toString() {
-    return "Article{" +
-        "id=" + id +
-        ", picture='" + picture + '\'' +
-        ", price=" + price +
-        ", stock=" + stock +
-        ", title='" + title + '\'' +
-        ", sizes=" + sizes +
-        ", brands=" + brands +
-        ", categories=" + categories +
-        '}';
-  }
+//  @Override
+//  public String toString() {
+//    return "Article{" +
+//        "id=" + id +
+//        ", picture='" + picture + '\'' +
+//        ", price=" + price +
+//        ", stock=" + stock +
+//        ", title='" + title + '\'' +
+//        ", sizes=" + sizes +
+//        ", brands=" + brands +
+//        ", categories=" + categories +
+//        '}';
+//  }
 }
