@@ -11,13 +11,15 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import lombok.AllArgsConstructor;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 import lombok.ToString;
 
 @NoArgsConstructor
 @AllArgsConstructor
-//@Getter
-//@Setter
+@Getter
+@Setter
 @ToString
 @Entity
 @Table(name = "article")
@@ -89,67 +91,4 @@ public class Article {
     brands.remove(brand);
     brand.setArticle(null);
   }
-
-  public Long getId() {
-		return id;
-	}
-	public void setId(Long id) {
-		this.id = id;
-	}
-	public String getTitle() {
-		return title;
-	}
-	public void setTitle(String title) {
-		this.title = title;
-	}
-	public double getPrice() {
-		return price;
-	}
-	public void setPrice(double price) {
-		this.price = price;
-	}
-	public int getStock() {
-		return stock;
-	}
-	public void setStock(int stock) {
-		this.stock = stock;
-	}
-	public Set<Size> getSizes() {
-		return sizes;
-	}
-	public void setSizes(Set<Size> sizes) {
-		this.sizes = sizes;
-	}
-	public Set<Brand> getBrands() {
-		return brands;
-	}
-	public void setBrands(Set<Brand> brands) {
-		this.brands = brands;
-	}
-	public Set<Category> getCategories() {
-		return categories;
-	}
-	public void setCategories(Set<Category> categories) {
-		this.categories = categories;
-	}
-	public String getPicture() {
-		return picture;
-	}
-	public void setPicture(String picture) {
-		this.picture = picture;
-	}
-
-//  @Override
-//  public String toString() {
-//    return "Article{" +
-//        "id=" + id +
-//        ", picture='" + picture + '\'' +
-//        ", price=" + price +
-//        ", stock=" + stock +
-//        ", title='" + title + '\'' +
-//        ", sizes=" + sizes +
-//        ", brands=" + brands +
-//        ", categories=" + categories +
-//        '}';
-//  }
 }

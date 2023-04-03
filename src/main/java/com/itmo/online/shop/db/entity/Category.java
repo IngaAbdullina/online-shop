@@ -17,8 +17,8 @@ import lombok.ToString;
 @NoArgsConstructor
 @AllArgsConstructor
 @ToString
-//@Getter
-//@Setter
+@Getter
+@Setter
 @Entity
 @Table(name = "category")
 public class Category {
@@ -38,39 +38,6 @@ public class Category {
 
   public Category(String name, Article article) {
     this.name = name;
-    this.article = article;
-  }
-
-//  @Override
-//  public String toString() {
-//    return "Category{" +
-//        "id=" + id +
-//        ", name='" + name + '\'' +
-//        ", article=" + article +
-//        '}';
-//  }
-
-  public Long getId() {
-    return id;
-  }
-
-  public void setId(Long id) {
-    this.id = id;
-  }
-
-  public String getName() {
-    return name;
-  }
-
-  public void setName(String name) {
-    this.name = name;
-  }
-
-  public Article getArticle() {
-    return article;
-  }
-
-  public void setArticle(Article article) {
     this.article = article;
   }
 }
