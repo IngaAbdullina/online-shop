@@ -135,4 +135,18 @@ public class Article {
 	public void setPicture(String picture) {
 		this.picture = picture;
 	}
+
+  @Override
+  public String toString() {
+    return "Article{" +
+        "id=" + id +
+        ", picture='" + picture + '\'' +
+        ", price=" + price +
+        ", stock=" + stock +
+        ", title='" + title + '\'' +
+        ", sizes=" + sizes +
+        ", brands=" + brands +
+        ", categories=" + categories +
+        '}';
+  }
 }

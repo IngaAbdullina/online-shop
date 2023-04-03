@@ -5,6 +5,7 @@ import com.itmo.online.shop.repository.ArticleRepository;
 import com.itmo.online.shop.repository.ArticleSpecification;
 import com.itmo.online.shop.service.ArticleService;
 import java.util.List;
+import java.util.Optional;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.Cacheable;
@@ -48,7 +49,8 @@ public class ArticleServiceImpl implements ArticleService {
 
   @Override
   public Article findArticleById(Long id) {
-    return articleRepository.getReferenceById(id);
+    Optional<Article> opt = articleRepository.findById(id);
+    return opt.get();
   }
 
   @Override
