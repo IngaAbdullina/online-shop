@@ -37,7 +37,7 @@ public class ShoppingCartController {
   }
 
   @RequestMapping("/add-item")
-  public String addItem(@ModelAttribute("article") Article article, @RequestParam("qty") String qty,
+  public String addItem(@ModelAttribute("article") Article article, @RequestParam("quantity") String qty,
       @RequestParam("size") String size, RedirectAttributes attributes, Authentication authentication) {
     article = articleService.findArticleById(article.getId());
     if (!article.hasStock(Integer.parseInt(qty))) {
@@ -52,7 +52,7 @@ public class ShoppingCartController {
 
   @RequestMapping("/update-item")
   public String updateItemQuantity(@RequestParam("id") Long cartItemId,
-      @RequestParam("qty") Integer qty, Model model) {
+      @RequestParam("quantity") Integer qty, Model model) {
     CartItem cartItem = shoppingCartService.findCartItemById(cartItemId);
     if (cartItem.canUpdateQuantity(qty)) {
       shoppingCartService.updateCartItem(cartItem, qty);

@@ -3,6 +3,7 @@ package com.itmo.online.shop.service.impl;
 import com.itmo.online.shop.db.entity.Address;
 import com.itmo.online.shop.repository.AddressRepository;
 import com.itmo.online.shop.service.AddressService;
+import java.util.Optional;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -18,7 +19,9 @@ public class AddressServiceImpl implements AddressService {
 
   @Override
   public Address findById(Long id) {
-    return addressRepository.getReferenceById(id);
+//    return addressRepository.getReferenceById(id);
+    Optional<Address> opt = addressRepository.findById(id);
+    return opt.get();
   }
 
   @Override

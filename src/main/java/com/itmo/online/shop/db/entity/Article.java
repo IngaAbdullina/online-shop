@@ -14,11 +14,13 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.ToString;
 
 @NoArgsConstructor
 @AllArgsConstructor
 //@Getter
 //@Setter
+@ToString
 @Entity
 @Table(name = "article")
 public class Article {
@@ -41,12 +43,15 @@ public class Article {
   private String title;
 
   @OneToMany(mappedBy = "article", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
+  @ToString.Exclude
   private Set<Size> sizes;
 
   @OneToMany(mappedBy = "article", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
+  @ToString.Exclude
   private Set<Brand> brands;
 
   @OneToMany(mappedBy = "article", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
+  @ToString.Exclude
   private Set<Category> categories;
 
   public boolean hasStock(int amount) {

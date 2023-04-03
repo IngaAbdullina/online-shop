@@ -6,6 +6,7 @@ import com.itmo.online.shop.db.ShoppingCart;
 import com.itmo.online.shop.db.entity.User;
 import com.itmo.online.shop.repository.CartItemRepository;
 import com.itmo.online.shop.service.ShoppingCartService;
+import java.util.Optional;
 import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
@@ -34,7 +35,9 @@ public class ShoppingCartServiceImpl implements ShoppingCartService {
 
   @Override
   public CartItem findCartItemById(Long cartItemId) {
-    return cartItemRepository.getReferenceById(cartItemId);
+//    return cartItemRepository.getReferenceById(cartItemId);
+    Optional<CartItem> opt = cartItemRepository.findById(cartItemId);
+    return opt.get();
   }
 
   @Override

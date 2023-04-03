@@ -13,11 +13,13 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.ToString;
 
 @NoArgsConstructor
 @AllArgsConstructor
-@Getter
-@Setter
+//@Getter
+//@Setter
+@ToString
 @Entity
 @Table(name = "size")
 public class Size implements Comparable<Size> {
@@ -32,6 +34,7 @@ public class Size implements Comparable<Size> {
 
   @ManyToOne(fetch = FetchType.EAGER)
   @JoinColumn(name = "article_id")
+  @ToString.Exclude
   private Article article;
 
   public Size(String value, Article article) {
@@ -43,4 +46,37 @@ public class Size implements Comparable<Size> {
   public int compareTo(Size s) {
     return this.value.compareTo(s.getValue());
   }
+
+  public Long getId() {
+    return id;
+  }
+
+  public void setId(Long id) {
+    this.id = id;
+  }
+
+  public String getValue() {
+    return value;
+  }
+
+  public void setValue(String value) {
+    this.value = value;
+  }
+
+  public Article getArticle() {
+    return article;
+  }
+
+  public void setArticle(Article article) {
+    this.article = article;
+  }
+
+//  @Override
+//  public String toString() {
+//    return "Size{" +
+//        "id=" + id +
+//        ", value='" + value + '\'' +
+//        ", article=" + article +
+//        '}';
+//  }
 }
