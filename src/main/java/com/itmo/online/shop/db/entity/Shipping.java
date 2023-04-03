@@ -4,6 +4,7 @@ import java.util.Date;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -34,10 +35,10 @@ public class Shipping {
 	@Column(name = "shipping_date")
 	private Date shippingDate;
 
-	@OneToOne(cascade= CascadeType.ALL, orphanRemoval = true)
+	@OneToOne(cascade= CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
 	@JoinColumn(name = "address_id")
 	private Address address;
 
-	@OneToOne
+	@OneToOne(fetch = FetchType.EAGER)
 	private Order order;
 }

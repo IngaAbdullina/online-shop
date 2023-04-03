@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 @Service
+@Transactional
 public class ShoppingCartServiceImpl implements ShoppingCartService {
 
   private final CartItemRepository cartItemRepository;
@@ -37,7 +38,6 @@ public class ShoppingCartServiceImpl implements ShoppingCartService {
   }
 
   @Override
-  @Transactional
   @CacheEvict(value = "itemcount", allEntries = true)
   public CartItem addArticleToShoppingCart(Article article, User user, int qty, String size) {
     ShoppingCart shoppingCart = this.getShoppingCart(user);
@@ -55,14 +55,12 @@ public class ShoppingCartServiceImpl implements ShoppingCartService {
   }
 
   @Override
-  @Transactional
   @CacheEvict(value = "itemcount", allEntries = true)
   public void removeCartItem(CartItem cartItem) {
     cartItemRepository.deleteById(cartItem.getId());
   }
 
   @Override
-  @Transactional
   @CacheEvict(value = "itemcount", allEntries = true)
   public void updateCartItem(CartItem cartItem, Integer qty) {
     if (qty == null || qty <= 0) {
@@ -74,7 +72,6 @@ public class ShoppingCartServiceImpl implements ShoppingCartService {
   }
 
   @Override
-  @Transactional
   @CacheEvict(value = "itemcount", allEntries = true)
   public void clearShoppingCart(User user) {
     cartItemRepository.deleteAllByUserAndOrderIsNull(user);

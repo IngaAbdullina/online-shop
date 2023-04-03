@@ -11,6 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 @Slf4j
 @Service
+@Transactional
 public class UserServiceImpl implements UserService {
 
   private final UserRepository userRepository;
@@ -41,7 +42,6 @@ public class UserServiceImpl implements UserService {
   }
 
   @Override
-  @Transactional
   public User createUser(String username, String password, String email) {
     User user = new User();
     user.setUsername(username);

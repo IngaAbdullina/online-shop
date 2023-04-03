@@ -35,7 +35,7 @@ public class CartItem {
   @Column(name = "size")
   private String size;
 
-  @OneToOne
+  @OneToOne(fetch = FetchType.EAGER)
   @JoinColumn(name = "article_id")
   private Article article;
 

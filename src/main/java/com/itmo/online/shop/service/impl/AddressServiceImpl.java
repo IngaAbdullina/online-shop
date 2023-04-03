@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 @Service
+@Transactional
 public class AddressServiceImpl implements AddressService {
 
   private final AddressRepository addressRepository;
@@ -21,7 +22,6 @@ public class AddressServiceImpl implements AddressService {
   }
 
   @Override
-  @Transactional
   public Address save(Address address) {
     return addressRepository.save(address);
   }

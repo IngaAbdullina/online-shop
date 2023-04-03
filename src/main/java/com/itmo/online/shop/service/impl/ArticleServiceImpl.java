@@ -15,6 +15,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 @Service
+@Transactional
 public class ArticleServiceImpl implements ArticleService {
 
   private final ArticleRepository articleRepository;
@@ -51,14 +52,12 @@ public class ArticleServiceImpl implements ArticleService {
   }
 
   @Override
-  @Transactional
   @CacheEvict(value = {"sizes", "categories", "brands"}, allEntries = true)
   public Article saveArticle(Article article) {
     return articleRepository.save(article);
   }
 
   @Override
-  @Transactional
   @CacheEvict(value = {"sizes", "categories", "brands"}, allEntries = true)
   public void deleteArticleById(Long id) {
     articleRepository.deleteById(id);

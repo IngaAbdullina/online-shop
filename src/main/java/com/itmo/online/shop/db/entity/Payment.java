@@ -2,6 +2,7 @@ package com.itmo.online.shop.db.entity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -46,6 +47,6 @@ public class Payment {
   @Column(name = "type")
   private String type;
 
-  @OneToOne
+  @OneToOne(fetch = FetchType.EAGER)
   private Order order;
 }
