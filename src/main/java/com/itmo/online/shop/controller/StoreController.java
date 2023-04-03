@@ -2,6 +2,7 @@ package com.itmo.online.shop.controller;
 
 import com.itmo.online.shop.db.entity.Article;
 import com.itmo.online.shop.db.entity.Brand;
+import com.itmo.online.shop.exception.ApiException;
 import com.itmo.online.shop.form.ArticleFilterForm;
 import com.itmo.online.shop.service.ArticleService;
 import com.itmo.online.shop.type.SortFilter;
@@ -43,7 +44,7 @@ public class StoreController {
 
 
   @RequestMapping("/article-detail")
-  public String articleDetail(@PathParam("id") Long id, Model model) {
+  public String articleDetail(@PathParam("id") Long id, Model model) throws ApiException {
     Article article = articleService.findArticleById(id);
     String brands = article.getBrands().stream()
         .map(brand -> String.format("%s", brand.getName()))

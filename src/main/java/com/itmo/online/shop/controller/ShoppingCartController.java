@@ -4,6 +4,7 @@ import com.itmo.online.shop.db.entity.Article;
 import com.itmo.online.shop.db.entity.CartItem;
 import com.itmo.online.shop.db.ShoppingCart;
 import com.itmo.online.shop.db.entity.User;
+import com.itmo.online.shop.exception.ApiException;
 import com.itmo.online.shop.service.ArticleService;
 import com.itmo.online.shop.service.ShoppingCartService;
 import org.springframework.security.core.Authentication;
@@ -38,7 +39,7 @@ public class ShoppingCartController {
 
   @RequestMapping("/add-item")
   public String addItem(@ModelAttribute("article") Article article, @RequestParam("quantity") String qty,
-      @RequestParam("size") String size, RedirectAttributes attributes, Authentication authentication) {
+      @RequestParam("size") String size, RedirectAttributes attributes, Authentication authentication) throws ApiException {
     article = articleService.findArticleById(article.getId());
     if (!article.hasStock(Integer.parseInt(qty))) {
       attributes.addFlashAttribute("notEnoughStock", true);
@@ -52,7 +53,7 @@ public class ShoppingCartController {
 
   @RequestMapping("/update-item")
   public String updateItemQuantity(@RequestParam("id") Long cartItemId,
-      @RequestParam("quantity") Integer qty, Model model) {
+      @RequestParam("quantity") Integer qty, Model model) throws ApiException {
     CartItem cartItem = shoppingCartService.findCartItemById(cartItemId);
     if (cartItem.canUpdateQuantity(qty)) {
       shoppingCartService.updateCartItem(cartItem, qty);
@@ -61,7 +62,7 @@ public class ShoppingCartController {
   }
 
   @RequestMapping("/remove-item")
-  public String removeItem(@RequestParam("id") Long id) {
+  public String removeItem(@RequestParam("id") Long id) throws ApiException {
     shoppingCartService.removeCartItem(shoppingCartService.findCartItemById(id));
     return "redirect:/shopping-cart/cart";
   }

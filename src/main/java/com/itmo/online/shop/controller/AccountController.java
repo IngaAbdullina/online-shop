@@ -169,7 +169,7 @@ public class AccountController {
   }
 
   @RequestMapping("/order-detail")
-  public String orderDetail(@RequestParam("order") Long id, Model model) {
+  public String orderDetail(@RequestParam("order") Long id, Model model) throws ApiException {
     Order order = orderService.findOrderWithDetails(id);
     model.addAttribute("order", order);
     return "orderDetails";

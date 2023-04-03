@@ -5,6 +5,7 @@ import com.itmo.online.shop.db.entity.Article;
 import com.itmo.online.shop.db.entity.Brand;
 import com.itmo.online.shop.db.entity.Category;
 import com.itmo.online.shop.db.entity.Size;
+import com.itmo.online.shop.exception.ApiException;
 import com.itmo.online.shop.service.ArticleService;
 import java.util.Arrays;
 import java.util.List;
@@ -60,7 +61,7 @@ public class ArticleController {
   }
 
   @RequestMapping("/edit")
-  public String editArticle(@RequestParam("id") Long id, Model model) {
+  public String editArticle(@RequestParam("id") Long id, Model model) throws ApiException {
     Article article = articleService.findArticleById(id);
     String preselectedSizes = "";
     for (Size size : article.getSizes()) {
