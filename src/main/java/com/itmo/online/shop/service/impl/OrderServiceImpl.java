@@ -49,7 +49,7 @@ public class OrderServiceImpl implements OrderService {
     LocalDate today = LocalDate.now();
     LocalDate estimatedDeliveryDate = today.plusDays(5);
     order.setOrderDate(Date.from(today.atStartOfDay(ZoneId.systemDefault()).toInstant()));
-    order.setShippingDate(  // todo
+    order.setShippingDate(
         Date.from(estimatedDeliveryDate.atStartOfDay(ZoneId.systemDefault()).toInstant()));
     order.setOrderStatus("In Progress");
     order = orderRepository.save(order);

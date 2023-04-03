@@ -12,13 +12,11 @@
         <div class="card card-login">
           <div class="card-body">
             <div class="row">
-            
-              <!-- Login Form -->
+
               <div class="col-md-6 col-login">
                 <form th:action="@{/login}" method="post" >
                   <div class="form-group text-center mb-2">
-                    <h2 class="mb-0">Log In</h2>
-                    <em>to your account</em>
+                    <h2 class="mb-0">Войти</h2>
                   </div>
                   <div class="form-group">
                     <div class="input-icon"> 
@@ -32,7 +30,7 @@
                       <i data-feather="lock"></i> 
                       <input required="required" type="password" class="form-control" placeholder="Password" name="password"
                              th:classappend="${param.error} ? is-invalid" >
-                      <div class="invalid-feedback">Incorrect username or password</div>  
+                      <div class="invalid-feedback">Неверное имя или пароль</div>
                     </div>                    
                   </div>
                   <div class="form-group d-flex justify-content-between">
@@ -40,31 +38,28 @@
                       <input type="checkbox"
                         class="custom-control-input" id="loginRemember" name="remember-me">
                       <label class="custom-control-label"
-                        for="loginRemember">Remember me</label>
+                        for="loginRemember">Запомнить меня</label>
                     </div>
-                    <a href="#" class="text-primary small reset">Forgot
-                        password ?</a>
+                    <a href="#" class="text-primary small reset">Забыли пароль?</a>
                   </div>
                   <button type="submit"
-                    class="btn btn-primary btn-block">LOGIN</button>
+                    class="btn btn-primary btn-block">ВОЙТИ</button>
                 </form>
               </div>
-              <!-- /Login Form -->
 
-              <span class="or-divider">OR</span>
+              <span class="or-divider">или</span>
 
-              <!-- Register Form -->
               <div class="col-md-6 col-register">
                 <form th:action="@{/new-user}" method="post">
                   <div class="form-group text-center">
-                    <h2 class="bold">Register</h2>
+                    <h2 class="bold">Зарегистрироваться</h2>
                   </div>
                   <div class="form-group">                
                     <div class="input-icon"> 
                       <i data-feather="mail"></i> 
                       <input required="required" type="email" class="form-control" th:classappend="${emailExists} ? is-invalid" 
-                             name="email" placeholder="Email address" th:value="${email}">
-                      <div class="invalid-feedback">Email is already in use</div>                 
+                             name="email" placeholder="Email" th:value="${email}">
+                      <div class="invalid-feedback">Такой email уже используется</div>
                     </div>
                   </div>
                   <div class="form-group">
@@ -72,7 +67,7 @@
                       <i data-feather="user"></i> 
                       <input required="required" type="text" class="form-control" th:classappend="${usernameExists} ? is-invalid"
                              placeholder="Username" name="username" th:value="${username}">
-                      <div class="invalid-feedback">Username is already in use</div>                 
+                      <div class="invalid-feedback">Такое имя уже используется</div>
                       
                     </div>
                   </div>
@@ -84,10 +79,9 @@
                     </div>
                   </div>
                   <button type="submit"
-                    class="btn btn-outline-primary btn-block">REGISTER</button>
+                    class="btn btn-outline-primary btn-block">ЗАРЕГИСТРИРОВАТЬСЯ</button>
                 </form>
               </div>
-              <!-- /Register Form -->
             </div>
           </div>
         </div>

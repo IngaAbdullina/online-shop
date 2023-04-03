@@ -8,19 +8,18 @@
 
   <div class="container page-content">   
     <form th:action="@{/checkout}" method="post">
-      <div class="row">      
+      <div class="row">
 
-        <!-- Checkout Info -->                         
         <div class="col-lg-8 mb-3" >
           <div th:if="${missingRequiredField}">
-            <h5 class="alert alert-warning">There are some required fields missing.</h5>
+            <h5 class="alert alert-warning">Необходимо заполнить все обязательные поля</h5>
           </div>          
           <div id="accordion">
             <div class="card">
               <div class="card-header bg-white" id="headingOne">
                 <h5 class="mb-0">
                   <button class="btn btn-link checkout-header" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                    REVIEW ITEMS <i data-feather="chevron-down" class="mb-1"></i>
+                    Товары <i data-feather="chevron-down" class="mb-1"></i>
                   </button>
                 </h5>
               </div>
@@ -34,25 +33,25 @@
                         </div>
                         <div class="col-8">
                           <a th:href="@{/article-detail?id=}+${cartItem.article.id}" class="h6 bold d-inline-block" th:text=${cartItem.article.title}></a>
-                            <div><i data-feather="check-circle" class="text-success"></i> In Stock</div>                  
-                            <div><small><b>Size</b>: <span th:text="${cartItem.size}"></span></small></div>                  
-                            <small><b>Unit Price</b>: $<span th:text="${#numbers.formatDecimal(cartItem.article.price, 0, 'COMMA', 2, 'POINT')}"></span></small>
+                            <div><i data-feather="check-circle" class="text-success"></i> В наличии</div>
+                            <div><small><b>Размер</b>: <span th:text="${cartItem.size}"></span></small></div>
+                            <small><b>Цена</b>: <span th:text="${#numbers.formatDecimal(cartItem.article.price, 0, 'COMMA', 2, 'POINT')} + ' ₽'"></span></small>
                         </div>
                       </div> 
                     </div>  
                     <div class="col-12 col-md-6 text-right">
-                      <span>x<span th:text="${cartItem.quantity}"></span> units: </span>
-                      <span class="font-weight-bold text-info">$ <span th:id="'price'+${cartItem.id}" th:text="${#numbers.formatDecimal(cartItem.subtotal, 0, 'COMMA', 2, 'POINT')}"></span></span>
+                      <span>x<span th:text="${cartItem.quantity}"></span></span>
+                      <span class="font-weight-bold text-info">Всего: <span th:id="'price'+${cartItem.id}" th:text="${#numbers.formatDecimal(cartItem.subtotal, 0, 'COMMA', 2, 'POINT')} + ' ₽'"></span></span>
                     </div>                  
                   </div>                  
                   <div class="text-center mx-auto">
-                    <small class="counter">TOTAL</small>
-                    <h3 class="font-weight-bold">$ <span th:text="${#numbers.formatDecimal(shoppingCart.getGrandTotal(), 0, 'COMMA', 2, 'POINT')}"></span></h3>
+                    <small class="counter">Всего</small>
+                    <h3 class="font-weight-bold"><span th:text="${#numbers.formatDecimal(shoppingCart.getGrandTotal(), 0, 'COMMA', 2, 'POINT')} + ' ₽'"></span></h3>
                   </div>                    
                   <div class="d-flex flex-wrap justify-content-between align-items-center mt-3">      
-                    <a th:href="@{/shopping-cart/cart}" class="btn btn-info rounded-pill  "><i data-feather="arrow-left"></i> Edit cart</a>           
+                    <a th:href="@{/shopping-cart/cart}" class="btn btn-info rounded-pill  "><i data-feather="arrow-left"></i> Редактировать корзину</a>
                     <a data-toggle="collapse" data-parent="#accordion"
-                        class="btn btn-primary rounded-pill " href="#collapseTwo">Next <i data-feather="arrow-right"></i></a>
+                        class="btn btn-primary rounded-pill " href="#collapseTwo">Далее<i data-feather="arrow-right"></i></a>
                   </div>
                 </div>                 
               </div>
@@ -61,7 +60,7 @@
               <div class="card-header bg-white" id="headingTwo">
                 <h5 class="mb-0">
                   <button class="btn btn-link checkout-header" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                    SHIPPING <i data-feather="chevron-down" class="mb-1"></i>
+                    Доставка <i data-feather="chevron-down" class="mb-1"></i>
                   </button>
                 </h5>
               </div>    
@@ -69,32 +68,32 @@
                 <div class="card-body border-bottom">
                   <div class="form-row">
                     <div class="form-group col-12">
-                      <label for="receiver">Receiver Name</label> 
+                      <label for="receiver">Имя получателя</label>
                       <input type="text" class="form-control" id="receiver" name="receiver" required="required"/>
-                    </div>  
+                    </div>
+                    <div class="form-group col-4">
+                      <label for="country">Страна</label> <input type="text"
+                         class="form-control" id="country" th:name="country"
+                         required="required"/>
+                    </div>
+                    <div class="form-group col-4">
+                      <label for="city">Город</label> <input type="text"
+                         class="form-control" id="city" th:name="city"
+                         required="required"/>
+                    </div>
                     <div class="form-group col-12">
-                      <label for="streetAddress">Address</label> 
+                      <label for="streetAddress">Адрес</label>
                       <input type="text" class="form-control" id="streetAddress" name="streetAddress" required="required" />
                     </div>
                     <div class="form-group col-4">
-                      <label for="city">City</label> <input type="text"
-                        class="form-control" id="city" th:name="city"
-                        required="required"/>
-                    </div>
-                    <div class="form-group col-4">
-                      <label for="country">Country</label> <input type="text"
-                        class="form-control" id="country" th:name="country"
-                        required="required"/>
-                    </div>
-                    <div class="form-group col-4">
-                      <label for="zipCode">Zipcode</label> <input
+                      <label for="zipCode">Индекс</label> <input
                         type="text" class="form-control" id="zipCode"
                         th:name="zipCode" required="required" />
                     </div>                                       
                   </div>
                   <div class="mt-2 text-right">
                     <a data-toggle="collapse" data-parent="#accordion"
-                      class="btn btn-primary rounded-pill" href="#collapseThree">Next <i data-feather="arrow-right"></i></a>
+                      class="btn btn-primary rounded-pill" href="#collapseThree"> Далее <i data-feather="arrow-right"></i></a>
                   </div>
                 </div>
               </div>
@@ -103,7 +102,7 @@
               <div class="card-header bg-white" id="headingThree">
                 <h5 class="mb-0">
                   <button class="btn btn-link checkout-header collapsed" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-                    PAYMENT  <i data-feather="chevron-down" class="mb-1"></i>
+                    Оплата <i data-feather="chevron-down" class="mb-1"></i>
                   </button>
                 </h5>
               </div>
@@ -113,22 +112,21 @@
                     <div class="col-12">
                       <img src="/image/creditcard.png" class="img-fluid mb-2" /><br />
                       <div class="form-group">
-                        <label for="cardType">Select Card Type: </label> <select
+                        <label for="cardType"> Выберите тип карты: </label> <select
                           class="form-control" id="cardType" name="type">
                           <option value="visa">Visa</option>
                           <option value="mastercard">Mastercard</option>
-                          <option value="discover">Discover</option>
-                          <option value="amex">American Express</option>
+                          <option value="mir">Мир</option>
                         </select>
                       </div>
 
                       <div class="form-group">
-                        <label for="cardHolder">Card Holder Name:</label> <input
+                        <label for="cardHolder">Имя держателя карты:</label> <input
                           type="text" class="form-control" id="cardHolder"
                           required="required" th:name="holderName">
                       </div>
                       <div class="form-group">
-                        <label for="cardNumber">Card Number:</label>
+                        <label for="cardNumber">Номер карты:</label>
                         <div class="input-group">
                           <input type="tel" class="form-control" id="cardNumber"
                             required="required" th:name="cardNumber">
@@ -140,32 +138,28 @@
                   <div class="row">
                     <div class="col-7">
                       <div class="form-group">
-                        <label>Expiration Date</label>
+                        <label>Дата истечения действия карты</label>
                         <div class="row">
                           <div class="col-6">
-                            <select class="form-control" name="expiryMonth"
-                              required="required">
-                              <option disabled="disabled">-- Month --</option>
-                              <option value="1">Jan (01)</option>
-                              <option value="2">Feb (02)</option>
-                              <option value="3">Mar (03)</option>
-                              <option value="4">Apr (04)</option>
-                              <option value="5">May (05)</option>
-                              <option value="6">June (06)</option>
-                              <option value="7">July (07)</option>
-                              <option value="8">Aug (08)</option>
-                              <option value="9">Sep (09)</option>
-                              <option value="10">Oct (10)</option>
-                              <option value="11">Nov (11)</option>
-                              <option value="12">Dec (12)</option>
+                            <select class="form-control" name="expiryMonth" required="required">
+                              <option disabled="disabled">-- Месяц --</option>
+                              <option value="1">Январь (01)</option>
+                              <option value="2">Февраль (02)</option>
+                              <option value="3">Март (03)</option>
+                              <option value="4">Апрель (04)</option>
+                              <option value="5">Май (05)</option>
+                              <option value="6">Июнь (06)</option>
+                              <option value="7">Июль (07)</option>
+                              <option value="8">Август (08)</option>
+                              <option value="9">Сентябрь (09)</option>
+                              <option value="10">Октябрь (10)</option>
+                              <option value="11">Ноябрь (11)</option>
+                              <option value="12">Декабрь (12)</option>
                             </select>
                           </div>
                           <div class="col-6">
                             <select class="form-control" name="expiryYear">
-                              <option disabled="disabled">-- Year --</option>
-                              <option value="2020">2020</option>
-                              <option value="2021">2021</option>
-                              <option value="2022">2022</option>
+                              <option disabled="disabled">-- Год --</option>
                               <option value="2023">2023</option>
                               <option value="2024">2024</option>
                               <option value="2025">2025</option>
@@ -180,59 +174,55 @@
                     </div>
                     <div class="col-5">
                       <div class="form-group">
-                        <label for="cardCVC">CV Code</label> <input id="cardCVC"
+                        <label for="cardCVC">CVC</label> <input id="cardCVC"
                           type="tel" class="form-control" name="cvc"/>
                       </div>
                     </div>
-                  </div>  
+                  </div>
                   <div class="mt-2 text-right">
                     <a data-toggle="collapse" data-parent="#accordion"
-                      class="btn btn-primary rounded-pill" href="#collapseThree">Next <i data-feather="arrow-right"></i></a>
-                  </div>                
-                </div>                
+                      class="btn btn-primary rounded-pill" href="#collapseThree"> Далее <i data-feather="arrow-right"></i></a>
+                  </div>
+                </div>
               </div>
-            </div>            
-          </div> <!--  end accordion -->          
+            </div>
+          </div>
         </div>
-        
-        
-        <!-- Summary Panel -->
+
         <div class="col-lg-4">
           <div class="card">
-            <div class="card-header bg-white checkout-header">ORDER SUMMARY</div>
+            <div class="card-header bg-white checkout-header">ИТОГО</div>
             <div class="card-body">
               <div class="d-flex justify-content-between">
-                <span>Cart subtotal</span>
-                <span>$ <span th:text="${#numbers.formatDecimal(shoppingCart.getGrandTotal(), 0, 'COMMA', 2, 'POINT')}"> </span></span>
+                <span>Итоговая стоимость</span>
+                <span><span th:text="${#numbers.formatDecimal(shoppingCart.getGrandTotal(), 0, 'COMMA', 2, 'POINT')} + ' ₽'"> </span></span>
               </div>
               <div class="d-flex justify-content-between">
-                <span>Shipping</span>
-                <span>$0.00</span>
+                <span>Доставка</span>
+                <span>0.00 ₽</span>
               </div>
               <hr>
               <div class="d-flex justify-content-between">
-                <span>Total</span>
-                <span class="font-weight-bold">$ <span th:text="${#numbers.formatDecimal(shoppingCart.getGrandTotal(), 0, 'COMMA', 2, 'POINT')}"> </span></span>
+                <span>Всего</span>
+                <span class="font-weight-bold"><span th:text="${#numbers.formatDecimal(shoppingCart.getGrandTotal(), 0, 'COMMA', 2, 'POINT')} + ' ₽'"> </span></span>
               </div>
             </div>
             <div class="card-footer bg-white border-top-0">
               <button type="submit" class="btn btn-primary rounded-pill btn-lg btn-block mt-2 mb-3">
-              Place your order
+              Заказать
               </button>            
               <p style="font-size: smaller;">
-                By placing your order, you agree to Shoepp <a href="#">privacy</a>
-                notice and <a href="#">conditions</a>.</p>                   
+                Совершая заказ, Вы соглашаетесь с <a href="#">условиями</a> и <a href="#">положениями</a>.</p>
             </div>
           </div>       
         </div>        
       </div>
     </form>             
     
-  </div> <!--  end container -->
+  </div>
   
   <div th:replace="common/header :: footer"> </div>  
   <div th:replace="common/header :: body-scripts"> </div>
- 
   
 </body>
 </html>

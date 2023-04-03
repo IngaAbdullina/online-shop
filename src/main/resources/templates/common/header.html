@@ -20,12 +20,6 @@
 <body>
   <div th:fragment="navbar">
     <nav class="navbar navbar-expand-md navbar-light bg-light fixed-top shadow-sm">
-      <a class="navbar-brand" th:href="@{/}"><img width="150" height="30" src="/image/logo.jpg"></a>
-      <button class="navbar-toggler" type="button" data-toggle="collapse"
-        data-target="#navbarCollapse" aria-controls="navbarCollapse"
-        aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
       <div class="collapse navbar-collapse" id="navbarCollapse">
         <ul class="navbar-nav mr-auto font-weight-bold">
           <li class="nav-item">
@@ -50,7 +44,7 @@
             <a class="nav-link" sec:authorize="isAuthenticated()" th:href="@{/logout}"> Выйти </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link text-dark" sec:authorize="hasRole('ADMIN')" th:href="@{/article/article-list}"> ADMIN PORTAL</a>
+            <a class="nav-link text-dark" sec:authorize="hasRole('ADMIN')" th:href="@{/article/article-list}"> Страница администратора</a>
           </li>
         </ul>
       </div>
@@ -94,7 +88,7 @@
           <div class="col-sm-6 col-lg-3 pl-3">
             <h6 class="font-weight-bold ">Контакты</h6>
             <div class="list-group list-group-flush list-group-no-border list-group-sm">
-              <span class="list-group-item"><strong>Телефон:</strong> 8(812)987-65-43 </span>
+              <span class="list-group-item"><strong>Телефон:</strong> 8 (812) 987-65-43 </span>
               <span class="list-group-item"><strong>Email:</strong> sports_shop@mail.com </span>
             </div>    
           </div>        
