@@ -50,7 +50,7 @@ public class Order {
   @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
   private Shipping shipping;
 
-  @ManyToOne(fetch = FetchType.LAZY)
+  @ManyToOne(fetch = FetchType.EAGER)
   private User user;
 
   @OneToMany(mappedBy = "order", cascade = CascadeType.ALL, fetch = FetchType.EAGER)

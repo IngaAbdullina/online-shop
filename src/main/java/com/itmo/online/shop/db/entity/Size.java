@@ -30,7 +30,7 @@ public class Size implements Comparable<Size> {
   @Column(name = "value")
   private String value;
 
-  @ManyToOne(fetch = FetchType.LAZY)
+  @ManyToOne(fetch = FetchType.EAGER)
   @JoinColumn(name = "article_id")
   private Article article;
 
