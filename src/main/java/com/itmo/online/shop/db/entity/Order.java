@@ -22,8 +22,6 @@ import lombok.ToString;
 
 @NoArgsConstructor
 @AllArgsConstructor
-//@Getter
-//@Setter
 @ToString
 @Entity
 @Table(name = "user_order")
@@ -133,19 +131,4 @@ public class Order {
   public void setCartItems(List<CartItem> cartItems) {
     this.cartItems = cartItems;
   }
-
-//  @Override
-//  public String toString() {
-//    return "Order{" +
-//        "id=" + id +
-//        ", orderDate=" + orderDate +
-//        ", orderStatus='" + orderStatus + '\'' +
-//        ", orderTotal=" + orderTotal +
-//        ", shippingDate=" + shippingDate +
-//        ", payment=" + payment +
-//        ", shipping=" + shipping +
-//        ", user=" + user +
-//        ", cartItems=" + cartItems +
-//        '}';
-//  }
 }

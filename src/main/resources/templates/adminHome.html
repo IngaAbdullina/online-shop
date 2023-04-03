@@ -5,7 +5,7 @@
 <body class="d-flex flex-column">
   <div th:fragment="navbarAdmin">
     <nav class="navbar navbar-expand-md navbar-dark bg-dark mb-4 fixed-top">
-      <a class="navbar-brand" th:href="@{/admin}">ADMIN PORTAL</a>
+      <a class="navbar-brand" th:href="@{/admin}">Страница администратора</a>
       <button class="navbar-toggler" type="button" data-toggle="collapse"
         data-target="#navbarCollapse" aria-controls="navbarCollapse"
         aria-expanded="false" aria-label="Toggle navigation">
@@ -16,29 +16,26 @@
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
               role="button" data-toggle="dropdown" aria-haspopup="true"
-              aria-expanded="false"> PRODUCTS </a>
+              aria-expanded="false"> ТОВАРЫ </a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <a class="dropdown-item" th:href="@{/article/add}">Add new product</a> 
-              <a class="dropdown-item" th:href="@{/article/article-list}">View product list</a> 
+              <a class="dropdown-item" th:href="@{/article/add}">Добавить новый товар</a>
+              <a class="dropdown-item" th:href="@{/article/article-list}">Все товары</a>
             </div>
           </li>   
         </ul>
         <ul class="navbar-nav ml-auto">
            <li class="nav-item">
-            <a class="nav-link" sec:authorize="isAuthenticated()" th:href="@{/}"> BACK TO STORE </a>
+            <a class="nav-link" sec:authorize="isAuthenticated()" th:href="@{/}">Вернуться в магазин</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" sec:authorize="isAuthenticated()" th:href="@{/logout}"> LOG OUT </a>
+            <a class="nav-link" sec:authorize="isAuthenticated()" th:href="@{/logout}">Выйти</a>
           </li>
         </ul>
       </div>
     </nav>
   </div>
-  
-  
+
   <div th:replace="common/header :: body-scripts"> </div>
-  
-  
 
 </body>
 </html>

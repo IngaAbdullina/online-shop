@@ -35,11 +35,9 @@ public class ArticleServiceImpl implements ArticleService {
 
   @Override
   public Page<Article> findArticlesByCriteria(Pageable pageable, Integer priceLow,
-      Integer priceHigh,
-      List<String> sizes, List<String> categories, List<String> brands, String search) {
-    return articleRepository.findAll(
-        ArticleSpecification.filterBy(priceLow, priceHigh, sizes, categories, brands, search),
-        pageable);
+      Integer priceHigh, List<String> sizes, List<String> categories, List<String> brands, String search) {
+    return articleRepository.findAll(ArticleSpecification.filterBy(priceLow, priceHigh, sizes,
+            categories, brands, search), pageable);
   }
 
   @Override
