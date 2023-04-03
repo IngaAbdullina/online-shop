@@ -1,6 +1,8 @@
 package com.itmo.online.shop.service.impl;
 
 import com.itmo.online.shop.db.entity.Address;
+import com.itmo.online.shop.exception.ApiException;
+import com.itmo.online.shop.exception.ErrorCode;
 import com.itmo.online.shop.repository.AddressRepository;
 import com.itmo.online.shop.service.AddressService;
 import java.util.Optional;
@@ -18,10 +20,12 @@ public class AddressServiceImpl implements AddressService {
   }
 
   @Override
-  public Address findById(Long id) {
-//    return addressRepository.getReferenceById(id);
-    Optional<Address> opt = addressRepository.findById(id);
-    return opt.get();
+  public Address findById(Long id) throws ApiException {
+    Optional<Address> optionalAddress = addressRepository.findById(id);
+    if (!optionalAddress.isPresent()) {
+      throw new ApiException(ErrorCode.NOT_FOUND, String.format("Address [id=%s] not found", id));
+    }
+    return optionalAddress.get();
   }
 
   @Override

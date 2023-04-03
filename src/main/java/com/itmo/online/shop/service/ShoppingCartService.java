@@ -4,6 +4,7 @@ import com.itmo.online.shop.db.entity.Article;
 import com.itmo.online.shop.db.entity.CartItem;
 import com.itmo.online.shop.db.ShoppingCart;
 import com.itmo.online.shop.db.entity.User;
+import com.itmo.online.shop.exception.ApiException;
 
 public interface ShoppingCartService {
 
@@ -11,7 +12,7 @@ public interface ShoppingCartService {
 
   int getItemsNumber(User user);
 
-  CartItem findCartItemById(Long cartItemId);
+  CartItem findCartItemById(Long cartItemId) throws ApiException;
 
   CartItem addArticleToShoppingCart(Article article, User user, int qty, String size);
 

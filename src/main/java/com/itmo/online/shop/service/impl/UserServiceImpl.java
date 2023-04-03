@@ -2,6 +2,8 @@ package com.itmo.online.shop.service.impl;
 
 import com.itmo.online.shop.db.entity.User;
 import com.itmo.online.shop.db.Role;
+import com.itmo.online.shop.exception.ApiException;
+import com.itmo.online.shop.exception.ErrorCode;
 import com.itmo.online.shop.repository.UserRepository;
 import com.itmo.online.shop.service.UserService;
 import com.itmo.online.shop.util.SecurityUtility;
@@ -22,10 +24,13 @@ public class UserServiceImpl implements UserService {
   }
 
   @Override
-  public User findById(Long id) {
-//    return userRepository.getReferenceById(id);
-    Optional<User> opt = userRepository.findById(id);
-    return opt.get();
+  public User findById(Long id) throws ApiException {
+    Optional<User> optionalUser = userRepository.findById(id);
+    if (!optionalUser.isPresent()) {
+      throw new ApiException(
+          ErrorCode.NOT_FOUND, String.format("User [id=%s] not found", id));
+    }
+    return optionalUser.get();
   }
 
   @Override

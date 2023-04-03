@@ -1,6 +1,8 @@
 package com.itmo.online.shop.service.impl;
 
 import com.itmo.online.shop.db.entity.Article;
+import com.itmo.online.shop.exception.ApiException;
+import com.itmo.online.shop.exception.ErrorCode;
 import com.itmo.online.shop.repository.ArticleRepository;
 import com.itmo.online.shop.repository.ArticleSpecification;
 import com.itmo.online.shop.service.ArticleService;
@@ -46,9 +48,12 @@ public class ArticleServiceImpl implements ArticleService {
   }
 
   @Override
-  public Article findArticleById(Long id) {
-    Optional<Article> opt = articleRepository.findById(id);
-    return opt.get();
+  public Article findArticleById(Long id) throws ApiException {
+    Optional<Article> optionalArticle = articleRepository.findById(id);
+    if (!optionalArticle.isPresent()) {
+      throw new ApiException(ErrorCode.NOT_FOUND, String.format("Article [id=%s] not found", id));
+    }
+    return optionalArticle.get();
   }
 
   @Override

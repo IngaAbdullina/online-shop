@@ -4,6 +4,8 @@ import com.itmo.online.shop.db.entity.Article;
 import com.itmo.online.shop.db.entity.CartItem;
 import com.itmo.online.shop.db.ShoppingCart;
 import com.itmo.online.shop.db.entity.User;
+import com.itmo.online.shop.exception.ApiException;
+import com.itmo.online.shop.exception.ErrorCode;
 import com.itmo.online.shop.repository.CartItemRepository;
 import com.itmo.online.shop.service.ShoppingCartService;
 import java.util.Optional;
@@ -34,10 +36,12 @@ public class ShoppingCartServiceImpl implements ShoppingCartService {
   }
 
   @Override
-  public CartItem findCartItemById(Long cartItemId) {
-//    return cartItemRepository.getReferenceById(cartItemId);
-    Optional<CartItem> opt = cartItemRepository.findById(cartItemId);
-    return opt.get();
+  public CartItem findCartItemById(Long cartItemId) throws ApiException {
+    Optional<CartItem> optionalCartItem = cartItemRepository.findById(cartItemId);
+    if (!optionalCartItem.isPresent()) {
+      throw new ApiException(ErrorCode.NOT_FOUND, String.format("Cart item [id=%s] not found", cartItemId));
+    }
+    return optionalCartItem.get();
   }
 
   @Override

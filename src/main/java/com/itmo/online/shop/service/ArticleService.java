@@ -1,6 +1,7 @@
 package com.itmo.online.shop.service;
 
 import com.itmo.online.shop.db.entity.Article;
+import com.itmo.online.shop.exception.ApiException;
 import java.util.List;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -14,7 +15,7 @@ public interface ArticleService {
 
   List<Article> findFirstArticles();
 
-  Article findArticleById(Long id);
+  Article findArticleById(Long id) throws ApiException;
 
   Article saveArticle(Article article);
 

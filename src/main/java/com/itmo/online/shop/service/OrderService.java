@@ -5,6 +5,7 @@ import com.itmo.online.shop.db.entity.Payment;
 import com.itmo.online.shop.db.entity.Shipping;
 import com.itmo.online.shop.db.ShoppingCart;
 import com.itmo.online.shop.db.entity.User;
+import com.itmo.online.shop.exception.ApiException;
 import java.util.List;
 
 public interface OrderService {
@@ -13,5 +14,5 @@ public interface OrderService {
 
   List<Order> findByUser(User user);
 
-  Order findOrderWithDetails(Long id);
+  Order findOrderWithDetails(Long id) throws ApiException;
 }

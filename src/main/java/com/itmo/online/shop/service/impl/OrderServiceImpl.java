@@ -7,6 +7,8 @@ import com.itmo.online.shop.db.entity.Payment;
 import com.itmo.online.shop.db.entity.Shipping;
 import com.itmo.online.shop.db.ShoppingCart;
 import com.itmo.online.shop.db.entity.User;
+import com.itmo.online.shop.exception.ApiException;
+import com.itmo.online.shop.exception.ErrorCode;
 import com.itmo.online.shop.repository.ArticleRepository;
 import com.itmo.online.shop.repository.CartItemRepository;
 import com.itmo.online.shop.repository.OrderRepository;
@@ -66,10 +68,12 @@ public class OrderServiceImpl implements OrderService {
   }
 
   @Override
-  public Order findOrderWithDetails(Long id) {
-//    Order order = orderRepository.findEagerById(id);
-    Optional<Order> order = orderRepository.findById(id);
-    return order.get();
+  public Order findOrderWithDetails(Long id) throws ApiException {
+    Optional<Order> optionalOrder = orderRepository.findById(id);
+    if (!optionalOrder.isPresent()) {
+      throw new ApiException(ErrorCode.NOT_FOUND, String.format("Order [id=%s] not found", id));
+    }
+    return optionalOrder.get();
   }
 
   public List<Order> findByUser(User user) {

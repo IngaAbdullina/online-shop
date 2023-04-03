@@ -1,10 +1,11 @@
 package com.itmo.online.shop.service;
 
 import com.itmo.online.shop.db.entity.User;
+import com.itmo.online.shop.exception.ApiException;
 
 public interface UserService {
 
-  User findById(Long id);
+  User findById(Long id) throws ApiException;
 
   User findByUsername(String username);
 
