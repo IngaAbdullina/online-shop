@@ -12,7 +12,7 @@ VALUES ('adidas_longsleeve_1', 'Adidas лонгслив светло-зелен�
         ('adidas_pants_3', 'Adidas брюки серые'),
         ('adidas_pants_4', 'Adidas брюки светло-серые'),
         ('adidas_pants_5', 'Adidas брюки серые с лампасами'),
-        ('adidas_pants_6', 'Adidas pants серые с лампасами'),
+        ('adidas_pants_6', 'Adidas брюки серые с лампасами'),
         ('adidas_pants_7', 'Adidas брюки черные'),
         ('adidas_pants_8', 'Adidas брюки черные'),
         ('adidas_pants_9', 'Adidas брюки черные'),
