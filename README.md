@@ -55,4 +55,5 @@
 <img width="557" alt="cart" src="https://user-images.githubusercontent.com/95912864/229703837-de4b78a8-7f7a-4b8a-af4a-a8ed6fb3ed39.png">
 
 ### Редактирование карточки товара администратором
-<img width="590" alt="admin_edit-article" src="https://user-images.githubusercontent.com/95912864/229704147-5963adc3-b115-4c16-a437-c1752be51c59.png">
+<img width="578" alt="admin_edit-article" src="https://user-images.githubusercontent.com/95912864/229705169-003afb15-7629-4006-9600-78391721dbbd.png">
+
