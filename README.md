@@ -2,7 +2,7 @@
 ### Используемые технологии:
 - Java 8
 - Spring framework (Sping boot, Spring MVC, Spring Data JPA/Hibernate, Spring Security)
-- MySQL
+- PostgreSQL
 - Thymeleaf
 - Bootstrap
 - jQuery
